@@ -5,7 +5,7 @@ permalink: /projects/
 description: My projects focus on developing topolical and geometric data analysis methods for biology applications at the molecular level, and the integration with machine learning and numerical partial differential equations (PDEs).
 nav: true
 nav_order: 2
-display_categories: [work, fun]
+display_categories: [Computational Math, Geometry and Topology Data Analysis, MathBio]
 horizontal: false
 ---
 
