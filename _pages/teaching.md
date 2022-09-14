@@ -8,7 +8,7 @@ nav_order: 5
 ---
 
 ### Teaching Courses
-* CMSE/MTH 314, Linear Algebra, MSU, Fall 2022
+* CMSE/MTH 314, Linear Algebra, MSU, Fall 2022 <a href="../assets/pdf/syllabus_MTH314.pdf" target="_blank" rel="noopener noreferrer" class="float-right">Syllabus</a>
 * MTH 132, Calculus, MSU, Fall 2021
 * MTH 496, Machine Learning (Capstone course), MSU, Spring 2021
 * MTH 496, Machine Learning (Capstone course), MSU, Fall 2020

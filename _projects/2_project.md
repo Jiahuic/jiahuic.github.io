@@ -161,3 +161,6 @@ to implement the *it arbitrary order* Taylor expansion as opposed to
 the original 0th order (center of mass) expansion.
 In updating the moments for lower levels of (larger) clusters using moments from higher levels of (smaller) clusters,
 a moments to moments (MtM) transformation as described in is applied.
+
+***Reference:***  [https://www.sciencedirect.com/science/article/pii/S0010465520303672](https://www.sciencedirect.com/science/article/pii/S0010465520303672)
+<a href="{{ paper-parallel_cyclic.pdf | prepend: 'assets/pdf/paper-parallel_cyclic.pdf' | relative_url}}" target="_blank" rel="noopener noreferrer" class="float-right"><i class="fas fa-file-pdf"></i></a>
