@@ -18,7 +18,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I am a visitng assistant profeesor in the 
+I am a visiting assistant profeesor in the 
 <a href="https://math.msu.edu/">Department of Mathematics at Michigan State University, East Lansing</a> 
 with my mentor <a href="https://users.math.msu.edu/users/weig/">Prof. Guo-Wei Wei</a>. 
 My researchs consists of mathematical studies, biology applications, 
