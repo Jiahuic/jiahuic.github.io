@@ -51,7 +51,7 @@ topology and geometry as data analysis for biology applications,
 and then use machine learning methods for biological property predictions.
 I am also working on their applications to virus, such as SARS-CoV-2, influenza virus, etc.
 
-#### I am the job market 2022 Fall
+#### I am in the job market 2022 Fall
 
 #### My main research interests:
 
