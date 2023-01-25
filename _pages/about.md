@@ -18,24 +18,24 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I am a visiting assistant profeesor in the 
+I am a visiting assistant professor in the 
 <a href="https://math.msu.edu/">Department of Mathematics at Michigan State University, East Lansing</a> 
 with my mentor <a href="https://users.math.msu.edu/users/weig/">Prof. Guo-Wei Wei</a>. 
 <b>My interests lie in finding the boundary that keeps mathematical beauty while doing machine learning.</b>
-My researchs consists of mathematical studies, biology applications, 
+My studies consists of mathematical studies, biology applications, 
 and numerical algorithm developments. 
-I am interested in developing topolical and geometric data analysis methods 
+I am interested in developing topological and geometric data analysis methods 
 for biology applications at molecular level, 
 and the integration with machine learning and numerical partial differential equation (PDE). 
 For biology, I am interested in problems of energy predictions of 
 protein-protein interaction (PPI) and energy change predictions of PPI induced by mutations.
 One of its key applications is 
-studying the SARS-CoV-2 Spike protein binding agains ACE2 and antibodies.
+studying the SARS-CoV-2 Spike protein binding against ACE2 and antibodies.
 Therefore, 
 the infectivity of SARS-CoV-2 virus and 
 the efficacy of antibody therapies and vaccine can be analyzed.
-In addition, I am also intereted in 
-fast computings of fast multipole methods (FMM), Treecode, parallel computing, 
+In addition, I am also interested in 
+fast computing of fast multipole methods (FMM), Treecode, parallel computing, 
 and GPU accelerated computing. 
 
 Before the current position at Michigan State University, 
