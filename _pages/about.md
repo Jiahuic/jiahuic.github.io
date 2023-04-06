@@ -18,7 +18,9 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I am a visiting assistant professor in the 
+I will start my new position as a tenure-track assistant professor in the
+Department of Mathematical Sciences at the University of Arkansas, Fayetteville, Arkansas.
+I am currently a visiting assistant professor in the 
 <a href="https://math.msu.edu/">Department of Mathematics at Michigan State University, East Lansing</a> 
 with my mentor <a href="https://users.math.msu.edu/users/weig/">Prof. Guo-Wei Wei</a>. 
 <b>My interests lie in finding the boundary that keeps mathematical beauty while doing machine learning.</b>
