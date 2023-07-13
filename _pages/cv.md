@@ -2,7 +2,7 @@
 layout: cv
 permalink: /cv/
 title: CV
-nav: true
-nav_order: 4
+nav: false
+nav_order: 
 cv_pdf: Chen_CV.pdf
 ---

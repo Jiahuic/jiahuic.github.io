@@ -5,11 +5,11 @@ nav: true
 nav_order: 7
 dropdown: true
 children: 
-    - title: publications
-      permalink: /publications/
+    - title: CV
+      permalink: /cv/
     - title: divider
-    - title: projects
-      permalink: /projects/
+    - title: Talks
+      permalink: /talks/
     - title: divider
     - title: blog
       permalink: /blog/
