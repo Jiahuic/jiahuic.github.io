@@ -23,7 +23,7 @@ Department of Mathematical Sciences at the University of Arkansas, Fayetteville,
 I am currently a visiting assistant professor in the 
 <a href="https://math.msu.edu/">Department of Mathematics at Michigan State University, East Lansing</a> 
 with my mentor <a href="https://users.math.msu.edu/users/weig/">Prof. Guo-Wei Wei</a>. 
-<b>My interests lie in finding the boundary that keeps mathematical beauty while doing machine learning.</b>
+My interests lie in finding the boundary that keeps mathematical beauty while doing machine learning.
 My studies consists of mathematical studies, biology applications, 
 and numerical algorithm developments. 
 I am interested in developing topological and geometric data analysis methods 
