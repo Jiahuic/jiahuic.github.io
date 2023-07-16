@@ -11,6 +11,8 @@ Welcome to this comprehensive guide on setting up Arch Linux for research. This 
 
 **NOTE**: it is highly recommended to read the arch wiki.
 
+**NOTE**: on Lenovo T490, Intel(R) Core(TM) i5-8265U CPU @ 1.60GHz
+
 ### Pre-installation Tips and Troubleshooting
 Before we dive into the installation process, there are a few things you need to know:
 
@@ -107,6 +109,29 @@ station wlan0 get-networks
 station wlan0 connect yourWiFi
 station wlan0 show
 ```
+
+
+### Bluetooth Connect
+Use the `bluetoothctl` utility which is part of the `bluez` package in Arch Linux to manage your Bluetooth devices.
+Install `bluez` and `bluez-utils` by `sudo pacman -S bluez bluez-utils`.
+Then start and enable the Bluetooth service:
+```
+sudo systemctl start bluetooth
+sudo systemctl enable bluetooth
+```
+Now, start `bluetoothctl` to pair and connect the devices.
+1. Start the `bluetoothctl`.
+2. Turn the Bluetooth controller power on: `power on`.
+3. Make the Bluetooth controller discoverable: `discoverable on`.
+4. Start the agent: `agent on`.
+5. Start scanning for devices: `scan on`. Copy its MAC address, then stop scanning: `scan off`.
+6. Pair and connect to the device. Replace `[device MAC address]` with the device's MAC address:
+``` bash
+pair [device MAC address]
+trust [device MAC address]
+connect [device MAC address]
+```
+Type `quit` to exit `bluetoothctl` when you're done.
 
 
 ### Conclusion
