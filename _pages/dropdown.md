@@ -10,7 +10,4 @@ children:
     - title: divider
     - title: Talks
       permalink: /talks/
-    - title: divider
-    - title: blog
-      permalink: /blog/
 ---

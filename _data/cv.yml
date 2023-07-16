@@ -16,16 +16,16 @@
       year: 2019
       description:
         - PhD Thesis - Parallel Multipole Expansion Algorithms and Their Biology Applications
-    - title: BSc
-      institution: Xi'an Jiaotong-Liverpool University, Suzhou, China and University of Liverpool, Liverpool, UK
-      year: 2014
+    # - title: BSc
+    #   institution: Xi'an Jiaotong-Liverpool University, Suzhou, China and University of Liverpool, Liverpool, UK
+    #   year: 2014
 
 - title: Experience
   type: time_table
   contents:
     - title: Visiting Assistant Professor
       institution: Department of Mathematics, Michigan State University, East Lansing, MI
-      year: 2019-now
+      year: 2019-2023
       #description:
       #  - Description 1.
       #  - Description 2.
@@ -34,7 +34,14 @@
       #      - Sub-description 1.
       #      - Sub-description 2.
 
-    - title: Visitor
+    - title: Visitor (host by Dr Chunmei Wang)
+      institution: Department of Mathematics, University of Florida, Gainsville, FL
+      year: Summer, 2022
+      #description:
+      #  - Description 1.
+      #  - Description 2.
+
+    - title: Visitor (host by Dr Guo-Wei Wei)
       institution: Department of Mathematics, Michigan State University, East Lansing, MI
       year: Summer, 2018
       #description:
@@ -52,21 +59,6 @@
     - title: Teaching Assistant
       institution: Southern Methodist University, Dallas, TX
       year: 2014-2016
-
-- title: Open Source Projects
-  type: time_table
-  contents:
-    - title: <a href="https://github.com/Jiahuic/TABI_solver">TABI_solver</a>
-      year: 2015-now
-      description: A C-version of treecode-accelerated boundary integral solvers for the linear Poisson-Boltzmann equation.
-
-    - title: <a href="https://github.com/lwwilson1/TABIPB">TABIPB-APBS</a>
-      year: 2016-now
-      description: This TABIPB repo serves as a submodule to APBS.
-
-    - title: <a href="https://github.com/WeilabMSU/TopNetmAb">TopNetmAb</a>
-      year: 2020-now
-      description: This code is for BFE change predictions of monoclonal antibodies binding to SARS-CoV-2 Spike protein.
 
 - title: Honors and Awards
   type: time_table
