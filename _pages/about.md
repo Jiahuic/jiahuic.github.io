@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: chenj159@msu.edu
+subtitle: jiahuic@uark.edu
 
 profile:
   align: right
