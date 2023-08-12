@@ -134,6 +134,15 @@ collections:
   projects: # selected publications
     output: true
     permalink: /projects/:path/
+  teaching:
+    output: true
+    permalink: /projects/:path/
+# _teaching/
+# ├── math-3583/
+# │   ├── assignments/
+# │   ├── lectures/
+# │   └── resources/
+# └── math-3583.md
 
 news_scrollable: true # adds a vertical scroll bar if there are more than 3 news items
 news_limit: 5 # leave blank to include all the news in the `_news` folder
