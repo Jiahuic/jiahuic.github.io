@@ -136,7 +136,7 @@ collections:
     permalink: /projects/:path/
   teaching:
     output: true
-    permalink: /projects/:path/
+    permalink: /teaching/:path/
 # _teaching/
 # ├── math-3583/
 # │   ├── assignments/
