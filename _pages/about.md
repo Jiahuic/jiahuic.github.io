@@ -9,6 +9,7 @@ profile:
   image: prof_pic.jpg
   image_cicular: false # crops the image to make it circular
   address: >
+    <p>SCEN 228</p>
     <p>Department of Mathematical Sciences</p>
     <p>850 W Dickson St #309</p>
     <p>University of Arkansas</p>
@@ -22,11 +23,11 @@ social: true  # includes social icons at the bottom of the page
 I am an assistant professor in the
 Department of Mathematical Sciences at the University of Arkansas, Fayetteville, Arkansas.
 Prior to that I was a visiting assistant professor in the 
-<a href="https://math.msu.edu/">Department of Mathematics at MSU</a> 
+Department of Mathematics at Michigan State University, East Lansing, Michigan
 working with <a href="https://users.math.msu.edu/users/weig/">Prof. Guo-Wei Wei</a>. 
 I have my Ph.D. at
-<a href="https://www.smu.edu/Dedman/Academics/Departments/Math/Graduate/Dissertations-New">Southern Methodist University</a> in 2019
-advised by <a href="https://www.smu.edu/Dedman/Academics/Departments/Math/People/Faculty/WeihuaGeng">Prof. Weihua Geng</a>.
+Southern Methodist University, Dallas, Texas in 2019.
+<!-- advised by <a href="https://www.smu.edu/Dedman/Academics/Departments/Math/People/Faculty/WeihuaGeng">Prof. Weihua Geng</a>. -->
 
 My interests lie in finding the boundary that keeps mathematical beauty while doing machine learning.
 My studies consist of mathematical studies, biology applications, 
