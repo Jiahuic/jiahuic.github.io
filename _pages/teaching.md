@@ -1,7 +1,7 @@
 ---
 layout: page
 permalink: /teaching/
-title: Teaching
+title: Teaching and Mentoring
 description: 
 nav: true
 nav_order: 4
@@ -21,3 +21,6 @@ nav_order: 4
 * Math 3305, Introduction to Linear Algebra, Fall 2016
 * Math 3313, Ordinary Differential Equations, Spring 2016
 * Math 3316, Introduction to High Performance Scientific Computing, Fall 2015
+
+### Mentoring
+* [MATH 399VH] Honors mathematics course, 2023
