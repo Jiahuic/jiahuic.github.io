@@ -224,6 +224,7 @@ A **Vector Space** is a set $$V$$ of elements called **vectors**, having operati
 - Closed under addition
 - Closed under scalar multiplication 
 
+The following are some properties of vector addition and scalar multiplication for vectors $\mathbf{u}$ and $\mathbf{v}$ and scalars $c$ and $d$:
 
 <strong>Closure Axioms</strong>
 <ol>
@@ -261,14 +262,12 @@ if $$s \in \mathbb R$$ and $$\mathbf{v} \in \mathbb R^n$$, then $$s\mathbf{v} \i
 
 ### 1.3 Linear Combination
 
-#### Linearity:
-
-Two important properties of vector addition and scalar multiplication are:
-
-1. **Additive Commutativity**: $$ \mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u} $$
-2. **Distributive Property**: $$ k (\mathbf{u} + \mathbf{v}) = k\mathbf{u} + k\mathbf{v} $$
-
-These properties make the set of all vectors (of a given dimension), equipped with these two operations, a vector space.
+<!-- Two important properties of vector addition and scalar multiplication are: -->
+<!---->
+<!-- 1. **Additive Commutativity**: $$ \mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u} $$ -->
+<!-- 2. **Distributive Property**: $$ k (\mathbf{u} + \mathbf{v}) = k\mathbf{u} + k\mathbf{v} $$ -->
+<!---->
+<!-- These properties make the set of all vectors (of a given dimension), equipped with these two operations, a vector space. -->
 
 A linear combination is an expression constructed from a set of terms by multiplying each term by a constant and adding the results. 
 
