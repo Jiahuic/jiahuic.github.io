@@ -224,7 +224,7 @@ A **Vector Space** is a set $$V$$ of elements called **vectors**, having operati
 - Closed under addition
 - Closed under scalar multiplication 
 
-The following are some properties of vector addition and scalar multiplication for vectors $\mathbf{u}$ and $\mathbf{v}$ and scalars $c$ and $d$:
+The following are some properties of vector addition and scalar multiplication for vectors $$\mathbf{u}$$ and $$\mathbf{v}$$ and scalars $$c$$ and $$d$$:
 
 <strong>Closure Axioms</strong>
 <ol>
