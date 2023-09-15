@@ -17,6 +17,27 @@ In the case of when $$q$$ is dimensionless, $$\lbrack\lbrack q \rbrack\rbrack=1$
 
 For example, $$\lbrack\lbrack v_0 \rbrack\rbrack=L/T$$, $$\lbrack\lbrack x \rbrack\rbrack=L$$ and $$\lbrack\lbrack x_M/R \rbrack\rbrack=1$$.
 
+**Derivative.**
+
+* $$ \lbrack\lbrack \frac{df}{dt} \rbrack\rbrack = \frac{\lbrack\lbrack df \rbrack\rbrack}{\lbrack\lbrack dt \rbrack\rbrack} $$,
+
+* $$
+\lbrack\lbrack \frac{d^2f}{dt^2} \rbrack\rbrack = \frac{\lbrack\lbrack df \rbrack\rbrack}{\lbrack\lbrack dt \rbrack\rbrack\lbrack\lbrack dt \rbrack\rbrack}
+$$,
+
+* $$
+\lbrack\lbrack \frac{du}{dt} \rbrack\rbrack = \frac{\lbrack\lbrack du \rbrack\rbrack}{\lbrack\lbrack dt \rbrack\rbrack}
+$$,
+
+* $$
+\lbrack\lbrack \frac{du}{dx} \rbrack\rbrack = \frac{\lbrack\lbrack du \rbrack\rbrack}{\lbrack\lbrack dx \rbrack\rbrack}
+$$,
+
+* $$
+\lbrack\lbrack \frac{d^2u}{dtdx} \rbrack\rbrack = \frac{\lbrack\lbrack du \rbrack\rbrack}{\lbrack\lbrack dx \rbrack\rbrack\lbrack\lbrack dt \rbrack\rbrack}
+$$.
+
+#### **Table of Dimensions**
 |Quantity|Dimensions| |Quantity|Dimensions|
 |---|---||---|---|
 |Acceleration| $$ LT^{-2} $$ ||Angle| $$ \text{Dimensionless} $$ |
@@ -104,7 +125,7 @@ $$
 x_{\text{max}} = \frac{v_0^2}{2g}
 $$
 
-##### **4.1.2 Using Dimensional Analysis**
+##### **4.2.2 Using Dimensional Analysis**
 Dimensional analysis is a powerful tool for solving physical problems, particularly when a straightforward analytical solution is elusive. The technique relies on the principle that every physical quantity must have consistent dimensions across an equation. We'll use this technique to find an expression for the maximum height ($$x_M$$) of a projectile launched vertically, given the initial velocity ($$v_0$$) and the gravitational acceleration ($$g$$).
 
 **Hypothesis: Dimensional Homogeneity**
