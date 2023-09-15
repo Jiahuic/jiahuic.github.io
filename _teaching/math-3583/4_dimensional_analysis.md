@@ -38,6 +38,7 @@ $$,
 $$.
 
 #### **Table of Dimensions**
+
 |Quantity|Dimensions| |Quantity|Dimensions|
 |---|---||---|---|
 |Acceleration| $$ LT^{-2} $$ ||Angle| $$ \text{Dimensionless} $$ |
