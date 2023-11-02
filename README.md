@@ -183,6 +183,23 @@ $ bundle install
 $ bundle exec jekyll serve
 ```
 
+On Mac, due to that macOS's System Integrity Protection (SIP) is preventing changes to the `/usr/bin` directory. It is recommended to use a Version Manager:
+```bash
+# Install rbenv and ruby-build
+brew install rbenv ruby-build
+
+# Initialize rbenv
+echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.zshrc
+source ~/.zshrc
+
+# Install a Ruby version
+rbenv install 2.7.4  # or your preferred version
+rbenv global 2.7.4
+
+# Now install bundler
+gem install bundler
+```
+
 Now, feel free to customize the theme however you like (don't forget to change the name!).
 After you are done, **commit** your final changes.
 
