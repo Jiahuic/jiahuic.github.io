@@ -8,6 +8,7 @@ nav_order: 4
 ---
 
 ### Teaching Courses at UArk
+* [MATH 499V/599V Mathematical Foundations of Machine Learning, Spring 2024](/teaching/math-499v599v/) <a href="../assets/pdf/flyer_MATH-499v599v-S24.pdf" target="_blank" rel="noopener noreferrer" class="float-right">Flyer</a>
 * [MATH 3583 Foundations of Applied Mathematics, Fall 2023](/teaching/math-3583/) 
 
 ### Teaching Courses at MSU
