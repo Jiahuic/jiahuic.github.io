@@ -103,3 +103,5 @@ from matplotlib import animation
 #### Deliverables
 Have a jupyter-notebook to show your code and results.
 Based on the results, prepare a 4-minute presentation to show your results and answer the question.
+
+**Reference**: [Wave Equation](https://john-s-butler-dit.github.io/NumericalAnalysisBook/Chapter%2010%20-%20Hyperbolic%20Equations/1001_Wave%20Equation.html)
