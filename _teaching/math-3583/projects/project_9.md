@@ -34,7 +34,9 @@ import numpy as np
 N = 100
 M = 100
 x = np.linspace(0,3,N+1)
+dx = 3/N
 t = np.linspace(0,10,M+1)
+dt = 10/M
 ```
 ##### Step 2: Initial Condition
 Compute the initial condition $$u(x,0)=g(x)$$ at $$t=0$$ using the given function $$g(x)$$ in Python.
@@ -48,16 +50,39 @@ for i in range(N+1):
     elif 9/4 <= x[i] <= 11/4:
         u0[i] = np.cos(np.pi*(2*x[i]-5))**2
 ```
-##### Step 3: Numerical Solution
+##### Step 3: Boundary Condition
+The periodic boundary condition is $$u(0,t)=u(3,t)$$ for all $$t$$.
+```python
+u0[0] = u0[N]
+```
+##### Step 4: Numerical Solution
+The explicit Forward Time Centered Space difference equation of the Wave Equation is,
+
+$$
+\frac{u^{n+1}_{j}-u^{n}_{j}}{\Delta_t}+\big(\frac{u^n_{j+1}-u^n_{j-1}}{2\Delta_x}\big)=0.
+$$
+
+Rearranging the equation we get,
+
+$$
+u_{j}^{n+1}=u^{n}_{j}-\lambda a(u_{j+1}^{n}-u_{j-1}^{n}),
+$$
+
+for $$j=0,...,10$$ where $$\lambda=\frac{\Delta_t}{\Delta_x}$$.
+
+This gives the formula for the unknown term $$w^{n+1}_{j}$$ at the $$(j,n+1)$$ mesh points
+in terms of $$x[j]$$ along the $$n$$-th time row.
+
 Use the forward difference scheme to discretize the 1D first order hyperbolic equation and obtain the numerical solution $$u(x,t)$$ at $$t=t_j$$ for $$j=1,2,\cdots,M$$.
 ```python
 u = np.zeros((M+1,N+1))
+lambda = dt/dx
 u[0,:] = u0
 for j in range(1,M+1):
     for i in range(1,N+1):
-        u[j,i] = u[j-1,i] - u[j-1,i]*(u[j-1,i]-u[j-1,i-1])*dt/dx
+        u[j,i] = u[j-1,i] - u[j-1,i]*(u[j-1,i]-u[j-1,i-1])*lambda
 ```
-##### Step 4: Plot the Numerical Solution
+##### Step 5: Plot the Numerical Solution
 Plot the numerical solution $$u(x,t)$$ at $$t=t_j$$ for $$j=1,2,\cdots,M$$.
 The plot is like a flash movie, which shows the propagation of the wave.
 ```python
@@ -73,7 +98,7 @@ ax.set_title('Numerical Solution')
 from matplotlib import animation
 ```
 
-##### Step 5: Question: what if use smaller time step?
+##### Step 6: Question: what if use smaller time step?
 
 #### Deliverables
 Have a jupyter-notebook to show your code and results.

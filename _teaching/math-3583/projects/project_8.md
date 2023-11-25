@@ -26,19 +26,29 @@ Discretize the domain $$0\le x \le1$$ into $$N$$ equally spaced points, i.e., $$
 The time domain $$t\ge0$$ is also discretized into $$M$$ equally spaced points, i.e., $$t_j = j\Delta t$$, where $$\Delta t = T/M$$ and $$T$$ is the final time.
 ```python
 import numpy as np
-N = 100
-M = 100
+N = 10
+M = 1000
 x = np.linspace(0,1,N+1)
 t = np.linspace(0,10,M+1)
+# initialize u 
+u = np.zeros((M+1,N+1))
 ```
 
 ##### Step 2: Initial Condition
 Compute the initial condition $$u(x,0)=\sin(\pi x)$$ at $$t=0$$ in Python.
 ```python
 u0 = np.sin(np.pi*x)
+u[0,:] = u0
 ```
 
-##### Step 3: Numerical Solution
+##### Step 3: Boundary Condition
+Compute the boundary condition $$u(0,t)=u(1,t)=0$$ at $$t=t_j$$ for $$j=1,2,\cdots,M$$ in Python.
+```python
+u[:,0] = 0
+u[:,-1] = 0
+```
+
+##### Step 4: Numerical Solution
 Use the forward Euler scheme to discretize the differentiaon equation and obtain the numerical solution $$u(x,t)$$ at $$t=t_j$$ for $$j=1,2,\cdots,M$$.
 Written out:
 
@@ -47,14 +57,12 @@ $$
 $$
 
 ```python
-u = np.zeros((M+1,N+1))
-u[0,:] = u0
 for j in range(1,M+1):
     for i in range(1,N):
-        u[j,i] = u[j-1,i] + D*(u[j-1,i+1]-2*u[j-1,i]+u[j-1,i-1])*dt/dx**2
+        u[j,i] = u[j-1,i] + (u[j-1,i+1]-2*u[j-1,i]+u[j-1,i-1])*dt/dx**2
 ```
 
-##### Step 4: Plot the Numerical Solution
+##### Step 5: Plot the Numerical Solution
 Plot the numerical solution $$u(x,t)$$ at $$t=t_j$$ for $$j=1,2,\cdots,M$$.
 ```python
 import matplotlib.pyplot as plt
