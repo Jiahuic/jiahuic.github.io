@@ -88,3 +88,7 @@ plt.show()
 #### Deliverables
 Have a jupyter-notebook to show your code and results.
 Based on the results, prepare a 4-minute presentation to show your results and answer the question.
+
+**reference**: 
+* http://hplgit.github.io/INF5620/doc/pub/main_diffu-solarized.html#:~:text=Forward%20Euler%20scheme,-The%20first%20step&text=The%20computationally%20simplest%20method%20arises,i%E2%88%921Δx2.
+* 
