@@ -11,5 +11,5 @@ with the initial condition
 $$
 u(x, 0) = f(x).
 $$
-It is assumed that $f(x)$ is piecewise continuous with $\lim_{x\rightarrow \pm\infty}f(x) = 0$.
+It is assumed that $$f(x)$$ is piecewise continuous with $$\lim_{x\rightarrow \pm\infty}f(x) = 0$$.
 Students choose this project should be able to understand the convolution theorem and how to solve the diffusion equation.
