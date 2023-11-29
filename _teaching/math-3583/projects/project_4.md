@@ -19,11 +19,11 @@ $$
 $$
 where $ \epsilon $ is a small parameter representing the thickness of the boundary layer.
 
-3. In the third step of the project, you are tasked with delving into perturbation methods, specifically focusing on regular perturbation and boundary layer methods, to solve the problem outlined in Step 2. For the regular perturbation component, you will formulate a series expansion for $ y(x) $ in terms of $ \epsilon $, followed by deriving the leading and next-order terms to understand the solution's behavior as $ \epsilon $ varies. Concurrently, using boundary layer methods, you will identify the location and width of the problem's boundary layer. By applying suitable variable transformations, they will derive both inner and outer solutions. These solutions will then be matched to generate a uniform approximation for $ y(x) $. This step aims to provide a hands-on understanding of how to apply these specialized techniques to solve complex problems effectively.
+3. In the third step of the project, you are tasked with delving into perturbation methods, specifically focusing on regular perturbation and boundary layer methods, to solve the problem outlined in Step 2. For the regular perturbation component, you will formulate a series expansion for $$ y(x) $$ in terms of $$ \epsilon $$, followed by deriving the leading and next-order terms to understand the solution's behavior as $$ \epsilon $$ varies. Concurrently, using boundary layer methods, you will identify the location and width of the problem's boundary layer. By applying suitable variable transformations, they will derive both inner and outer solutions. These solutions will then be matched to generate a uniform approximation for $$ y(x) $$. This step aims to provide a hands-on understanding of how to apply these specialized techniques to solve complex problems effectively.
 Should go through **the section 2.5 Introduction to Boundary Layers**.
 
 4. In the fourth phase of the project, you will execute an in-depth error analysis to scrutinize the accuracy of the perturbative solutions, 
-with a particular focus on studying how this error evolves with changes in $ \epsilon $. 
+with a particular focus on studying how this error evolves with changes in $$ \epsilon $$. 
 This analytical endeavor aims to achieve several educational outcomes: 
 a comprehensive grasp of boundary layer phenomena and their mathematical repercussions, 
 proficiency in applying perturbation techniques to boundary layer challenges, and insights into the limitations and effective applications of these methods. 

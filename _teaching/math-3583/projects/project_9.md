@@ -68,7 +68,7 @@ $$
 u_{j}^{n+1}=u^{n}_{j}-\lambda a(u_{j+1}^{n}-u_{j-1}^{n}),
 $$
 
-for $$j=0,...,10$$ where $$\lambda=\frac{\Delta_t}{\Delta_x}$$.
+for $$j=0,...,10$$ where $$\lambda=\frac{\Delta_t}{2\Delta_x}$$.
 
 This gives the formula for the unknown term $$w^{n+1}_{j}$$ at the $$(j,n+1)$$ mesh points
 in terms of $$x[j]$$ along the $$n$$-th time row.

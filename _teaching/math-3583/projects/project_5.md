@@ -10,7 +10,7 @@ $$
 dx/dt = \alpha x - \beta xy
 dy/dt = \detal xy - \gamma y
 $$
-where $x$ and $y$ represent the populations of prey and predator, respectively, and $\alpha$, $\beta$, $\gamma$, $\delta$ are constants.
+where $$x$$ and $$y$$ represent the populations of prey and predator, respectively, and $$\alpha$$, $$\beta$$, $$\gamma$$, $$\delta$$ are constants.
 
 2. Engage in null-cline and phase plane analysis to explore the dynamics of the system in question. Initially, you will plot the null-clines of the system, identifying their intersections as these represent the steady-state solutions. Following this, phase plane analysis will be employed to visualize the trajectories of these solutions. Through these exercises, you will gain both a qualitative and quantitative understanding of the system's behavior, specifically focusing on its steady states and their stability.
 
