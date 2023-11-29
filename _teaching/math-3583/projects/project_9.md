@@ -76,11 +76,11 @@ in terms of $$x[j]$$ along the $$n$$-th time row.
 Use the forward difference scheme to discretize the 1D first order hyperbolic equation and obtain the numerical solution $$u(x,t)$$ at $$t=t_j$$ for $$j=1,2,\cdots,M$$.
 ```python
 u = np.zeros((M+1,N+1))
-lambda = dt/dx
+lambda = dt/dx/2
 u[0,:] = u0
 for j in range(1,M+1):
     for i in range(1,N+1):
-        u[j,i] = u[j-1,i] - u[j-1,i]*(u[j-1,i]-u[j-1,i-1])*lambda
+        u[j,i] = u[j-1,i] - u[j-1,i]*(u[j-1,i+1]-u[j-1,i-1])*lambda
 ```
 ##### Step 5: Plot the Numerical Solution
 Plot the numerical solution $$u(x,t)$$ at $$t=t_j$$ for $$j=1,2,\cdots,M$$.
