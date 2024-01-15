@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Setting up Arch Linux for Research: A Comprehensive Guide'
+title: 'Setting up Arch Linux for Research'
 date: 2023-07-11 15:09:00
 description: an easy installation and set up for people who want to use arch linux for research
 tags: linux install
@@ -16,9 +16,16 @@ Welcome to this comprehensive guide on setting up Arch Linux for research. This 
 ### Pre-installation Tips and Troubleshooting
 Before we dive into the installation process, there are a few things you need to know:
 
-1. **Configuration Updates:** In the installer, you might encounter some issues related to the `self._config[key]` in the `/usr/lib/python3.10/site-packages/archinstall/lib/configuration.py` file. To avoid this, add `if key == 'disk_encryption' and self._config[key]:` to avoid faults before the installation.
+1. **Configuration Updates:** In the installer, you might encounter some issues related to the `self._config[key]` in the `/usr/lib/python3.10/site-packages/archinstall/lib/configuration.py` file. To avoid this, add `if key == 'disk_encryption' and self._config[key]:` to avoid faults before the installation. (this is no longer needed for 23.11)
 2. **Connecting to WiFi:** During the installation, you may need to connect to WiFi. We'll explain how to do this in a later [section](#connect-to-wifi), so for now, just be aware that this is a step you'll need to take.
 3. **Running the Installation Script:** To begin the installation process, you'll need to type `archinstall` in the terminal.
+  - Bootloader: grub-install
+  - Drive(s): this is tricky. If you have a small SSD and a large HDD, you might want to install the system on the SSD and use the HDD as a storage. In this case, you need to partition the SSD and HDD separately. If you have only one SSD, you can partition it as you wish.
+  **in my case**, I have a large SSD. I just choose the SSD and then mount the HDD to the `/home/HDD` or `/mnt` folder.
+  - Disk layout: ext4
+  - Audio server: pulseaudio
+  - Profile: awesome, NVIDIA (proprietary)
+  - Optional repositories: multilib
 4. **Choosing the Filesystem and Partition:** When the script prompts you to choose a filesystem, select ext4. You won't need to set up any extra partitions.
 5. **Selecting an Audio Server:** For the audio server, choose pulseaudio.
 6. **Installing Additional Packages:** You'll also be prompted to install additional packages. Here, select: `htop`, `neofetch`, `neovim`, `git`, and `firefox`.
@@ -40,7 +47,7 @@ if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
   exec startx
 fi
 ```
-3. **Install Useful Utilities**: install `picom`, `tmux`, `exa`, `zip`, `unzip`, `alsa-utils`, `noto-fonts-cjk`, `exa`, `bat`, `skype`, `discord`, `zoom`, `TexStudio`, `anaconda`, `texlive-core`, `pcmanfm`, `gcc-fortran`, `docker` (`sudo systemctl start docker`), `ruby`, etc.
+3. **Install Useful Utilities**: install `picom`, `fzf`, `tmux`, `exa`, `zip`, `unzip`, `alsa-utils`, `noto-fonts-cjk`, `exa`, `bat`, `skype`, `discord`, `zoom`, `TexStudio`, `anaconda`, `texlive-core`, `pcmanfm`, `gcc-fortran`, `docker` (`sudo systemctl start docker`), `ruby`, etc.
 4. [Check screen tearing](#screen-tearing): Screen tearing can be annoying and disrupt your workflow. Check the later section.
 5. [Install font](#install-font):  A good set of fonts can make your system look clean and be easy on the eyes. 
 6. **Key setup**: Set up your keys using  `.Xmodmap` with the following configuration:
