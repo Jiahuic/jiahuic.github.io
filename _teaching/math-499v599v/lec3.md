@@ -1,3 +1,9 @@
+---
+layout: page
+permalink: /teaching/math-499v599v/lec1/
+title: Introduction to Topological Data Analysis
+---
+
 # Topological Data Analysis (TDA)
 Topological data analysis (TDA) is a collection of methods for analyzing datasets that have an underlying topological structure. The goal of TDA is to describe the shape of data, and to find the best possible summary (invarient) of that shape in a way that is robust to noise and other "nuisance" parameters. TDA is a relatively new field, and is an active area of research in applied mathematics and statistics.
 

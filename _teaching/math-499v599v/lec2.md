@@ -1,3 +1,9 @@
+---
+layout: page
+permalink: /teaching/math-499v599v/lec2/
+title: Data Preprocessing
+---
+
 # Data Preprocessing
 We will use Data Preprocessing to learn the basics of Python and its useful packages. 
 The data preprocessing is the first step in the data science (machine learning) pipeline.
