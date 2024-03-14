@@ -29,12 +29,12 @@ I have my Ph.D. at
 Southern Methodist University, Dallas, Texas in 2019.
 <!-- advised by <a href="https://www.smu.edu/Dedman/Academics/Departments/Math/People/Faculty/WeihuaGeng">Prof. Weihua Geng</a>. -->
 
-My interests lie in finding the boundary that keeps mathematical beauty while doing machine learning.
-My studies consist of mathematical studies, biology applications, 
+<!-- My interests lie in finding the boundary that keeps mathematical beauty while doing machine learning. -->
+My studies consist of deep learning, mathematical studies, biology applications, 
 and numerical algorithm developments. 
 I am interested in developing topological and geometric data analysis methods 
 for biology applications at molecular level, 
-and the integration with machine learning and numerical partial differential equation (PDE). 
+and the integration with deep learning and numerical methods. 
 For biology, I am interested in problems of energy predictions of 
 protein-protein interaction (PPI) and energy change predictions of PPI induced by mutations.
 <!-- One of its key applications is  -->
@@ -45,6 +45,8 @@ protein-protein interaction (PPI) and energy change predictions of PPI induced b
 In addition, I am also interested in 
 fast computing of fast multipole methods (FMM), Treecode, parallel computing, 
 and GPU accelerated computing. 
+
+For students, who are interested in my research, please feel free to contact me.
 
 <!-- Before the current position at Michigan State University,  -->
 <!-- I was a Ph.D. student at  -->
