@@ -16,7 +16,6 @@ profile:
     <p>Fayetteville, AR 72701</p>
 
 news: true  # includes a list of news items
-selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
@@ -47,6 +46,10 @@ fast computing of fast multipole methods (FMM), Treecode, parallel computing,
 and GPU accelerated computing. 
 
 For students, who are interested in my research, please feel free to contact me.
+
+#### Current Funding Support:
+
+I am currently supported by **NSF-DMS 2514195** and **NIH-R01 AI164266**.
 
 <!-- Before the current position at Michigan State University,  -->
 <!-- I was a Ph.D. student at  -->
