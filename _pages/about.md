@@ -25,8 +25,8 @@ Prior to that I was a visiting assistant professor in the
 Department of Mathematics at Michigan State University, East Lansing, Michigan
 working with <a href="https://users.math.msu.edu/users/weig/">Prof. Guo-Wei Wei</a>. 
 I have my Ph.D. at
-Southern Methodist University, Dallas, Texas in 2019.
-<!-- advised by <a href="https://www.smu.edu/Dedman/Academics/Departments/Math/People/Faculty/WeihuaGeng">Prof. Weihua Geng</a>. -->
+Southern Methodist University, Dallas, Texas in 2019,
+advised by <a href="https://www.smu.edu/dedman/academics/departments/math/people/faculty/weihuageng">Prof. Weihua Geng</a>.
 
 <!-- My interests lie in finding the boundary that keeps mathematical beauty while doing machine learning. -->
 My studies consist of deep learning, mathematical studies, biology applications, 
