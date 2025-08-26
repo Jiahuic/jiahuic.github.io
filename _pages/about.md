@@ -49,7 +49,7 @@ For students, who are interested in my research, please feel free to contact me.
 
 #### Current Funding Support:
 
-I am currently supported by **NSF-DMS 2514195** and **NIH-R01 AI164266**.
+I am currently supported by **[NSF-DMS 2514195](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2514195&HistoricalAwards=false)** and **NIH-R01 AI164266**.
 
 <!-- Before the current position at Michigan State University,  -->
 <!-- I was a Ph.D. student at  -->
