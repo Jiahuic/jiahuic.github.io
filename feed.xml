@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://jiahuic.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://jiahuic.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2025-10-21T04:16:45+00:00</updated><id>https://jiahuic.github.io/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. </subtitle><entry><title type="html">SSH and tmux: Essential Tools for Remote Development</title><link href="https://jiahuic.github.io/notes/development/2025/01/27/ssh.html" rel="alternate" type="text/html" title="SSH and tmux: Essential Tools for Remote Development"/><published>2025-01-27T10:30:00+00:00</published><updated>2025-01-27T10:30:00+00:00</updated><id>https://jiahuic.github.io/notes/development/2025/01/27/ssh</id><content type="html" xml:base="https://jiahuic.github.io/notes/development/2025/01/27/ssh.html"><![CDATA[<h2 id="introduction">Introduction</h2> <p>Secure Shell (SSH) and tmux are essential tools for modern remote development and server management. SSH provides secure access to remote systems, while tmux enables persistent terminal sessions that survive network disconnections. Whether you’re managing servers, developing on remote machines, or collaborating with team members, mastering these tools will significantly boost your productivity.</p> <h2 id="ssh-secure-remote-access">SSH: Secure Remote Access</h2> <h3 id="choosing-an-ssh-client">Choosing an SSH Client</h3> <p>The default SSH client for both macOS and Linux systems is the built-in terminal. For Windows users, several alternatives are available:</p> <ul> <li><strong>Terminal (Mac and Linux)</strong>: Connect using <code class="language-plaintext highlighter-rouge">ssh username@host</code> in the terminal</li> <li><strong>Windows Options</strong>: PuTTY, Bitvise SSH Client, MobaXterm, or Windows Subsystem for Linux (WSL)</li> <li><strong>VS Code</strong>: Built-in terminal with Remote-SSH extension for seamless development</li> </ul> <h3 id="essential-ssh-tricks">Essential SSH Tricks</h3> <h4 id="1-key-based-authentication">1. Key-Based Authentication</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Generate SSH key pair</span>
+ssh-keygen <span class="nt">-t</span> ed25519 <span class="nt">-C</span> <span class="s2">"your_email@example.com"</span>
+
+<span class="c"># Copy public key to remote server</span>
+ssh-copy-id user@remote-server
+
+<span class="c"># Or manually copy the key</span>
+<span class="nb">cat</span> ~/.ssh/id_ed25519.pub | ssh user@remote-server <span class="s2">"mkdir -p ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys"</span>
+</code></pre></div></div> <h4 id="2-execute-commands-remotely">2. Execute Commands Remotely</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Run a single command</span>
+ssh user@remote-server <span class="s2">"ls -la /home/user"</span>
+
+<span class="c"># Run multiple commands</span>
+ssh user@remote-server <span class="s2">"cd /project &amp;&amp; git pull &amp;&amp; make build"</span>
+</code></pre></div></div> <h4 id="3-port-forwarding-and-tunneling">3. Port Forwarding and Tunneling</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Local port forwarding (forward local port to remote)</span>
+ssh <span class="nt">-L</span> 8888:localhost:8888 user@remote-server
+
+<span class="c"># Remote port forwarding (forward remote port to local)</span>
+ssh <span class="nt">-R</span> 8888:localhost:8888 user@remote-server
+
+<span class="c"># Dynamic SOCKS proxy</span>
+ssh <span class="nt">-D</span> 1080 user@remote-server
+</code></pre></div></div> <h4 id="4-jupyter-notebook-tunneling">4. Jupyter Notebook Tunneling</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># On remote server</span>
+jupyter notebook <span class="nt">--no-browser</span> <span class="nt">--port</span><span class="o">=</span>8888 <span class="nt">--ip</span><span class="o">=</span>0.0.0.0
+
+<span class="c"># On local machine</span>
+ssh <span class="nt">-L</span> 8889:localhost:8888 user@remote-server
+
+<span class="c"># Access via http://localhost:8889 in your browser</span>
+</code></pre></div></div> <h2 id="tmux-terminal-multiplexer">tmux: Terminal Multiplexer</h2> <h3 id="what-is-tmux">What is tmux?</h3> <p>tmux is a terminal multiplexer that allows you to:</p> <ul> <li>Create persistent terminal sessions that survive network disconnections</li> <li>Split terminals into multiple panes</li> <li>Create multiple windows within a session</li> <li>Share sessions with other users</li> <li>Detach and reattach to sessions</li> </ul> <h3 id="installing-tmux">Installing tmux</h3> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Ubuntu/Debian</span>
+<span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt <span class="nb">install </span>tmux
+
+<span class="c"># CentOS/RHEL/Fedora</span>
+<span class="nb">sudo </span>yum <span class="nb">install </span>tmux  <span class="c"># or sudo dnf install tmux</span>
+
+<span class="c"># macOS</span>
+brew <span class="nb">install </span>tmux
+
+<span class="c"># Arch Linux</span>
+<span class="nb">sudo </span>pacman <span class="nt">-S</span> tmux
+</code></pre></div></div> <h3 id="basic-tmux-commands">Basic tmux Commands</h3> <h4 id="session-management">Session Management</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Start new session</span>
+tmux
+
+<span class="c"># Start named session</span>
+tmux new-session <span class="nt">-s</span> mysession
+
+<span class="c"># List sessions</span>
+tmux list-sessions  <span class="c"># or tmux ls</span>
+
+<span class="c"># Attach to session</span>
+tmux attach-session <span class="nt">-t</span> mysession  <span class="c"># or tmux a -t mysession</span>
+
+<span class="c"># Detach from session</span>
+<span class="c"># Press Ctrl+b, then d</span>
+</code></pre></div></div> <h4 id="window-management">Window Management</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create new window</span>
+Ctrl+b, c
+
+<span class="c"># Switch between windows</span>
+Ctrl+b, n  <span class="c"># next window</span>
+Ctrl+b, p  <span class="c"># previous window</span>
+Ctrl+b, &lt;number&gt;  <span class="c"># switch to specific window</span>
+
+<span class="c"># Rename current window</span>
+Ctrl+b, ,
+
+<span class="c"># List windows</span>
+Ctrl+b, w
+</code></pre></div></div> <h4 id="pane-management">Pane Management</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Split pane horizontally</span>
+Ctrl+b, <span class="s2">"
+
+# Split pane vertically
+Ctrl+b, %
+
+# Switch between panes
+Ctrl+b, &lt;arrow-keys&gt;
+
+# Resize panes
+Ctrl+b, Ctrl+&lt;arrow-keys&gt;
+
+# Close current pane
+Ctrl+b, x
+</span></code></pre></div></div> <h3 id="advanced-tmux-features">Advanced tmux Features</h3> <h4 id="1-copy-mode">1. Copy Mode</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Enter copy mode</span>
+Ctrl+b, <span class="o">[</span>
+
+<span class="c"># Navigate with arrow keys or vim keys</span>
+<span class="c"># Press Space to start selection</span>
+<span class="c"># Press Enter to copy</span>
+<span class="c"># Paste with Ctrl+b, ]</span>
+</code></pre></div></div> <h4 id="2-tmux-configuration">2. tmux Configuration</h4> <p>Create <code class="language-plaintext highlighter-rouge">~/.tmux.conf</code> for custom settings:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Enable mouse support</span>
+<span class="nb">set</span> <span class="nt">-g</span> mouse on
+
+<span class="c"># Set base index to 1</span>
+<span class="nb">set</span> <span class="nt">-g</span> base-index 1
+setw <span class="nt">-g</span> pane-base-index 1
+
+<span class="c"># Increase scrollback buffer</span>
+<span class="nb">set</span> <span class="nt">-g</span> history-limit 10000
+
+<span class="c"># Enable vi keys</span>
+setw <span class="nt">-g</span> mode-keys vi
+
+<span class="c"># Status bar customization</span>
+<span class="nb">set</span> <span class="nt">-g</span> status-bg black
+<span class="nb">set</span> <span class="nt">-g</span> status-fg white
+<span class="nb">set</span> <span class="nt">-g</span> status-left <span class="s1">'#[fg=green]#S'</span>
+</code></pre></div></div> <h4 id="3-session-sharing">3. Session Sharing</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create shared session</span>
+tmux new-session <span class="nt">-s</span> shared <span class="nt">-d</span>
+
+<span class="c"># Allow others to attach</span>
+tmux attach-session <span class="nt">-t</span> shared
+
+<span class="c"># Other users can attach with</span>
+tmux attach-session <span class="nt">-t</span> shared
+</code></pre></div></div> <h3 id="practical-tmux-workflows">Practical tmux Workflows</h3> <h4 id="1-development-environment">1. Development Environment</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Start development session</span>
+tmux new-session <span class="nt">-s</span> dev <span class="nt">-d</span>
+
+<span class="c"># Split into multiple panes</span>
+tmux split-window <span class="nt">-h</span>  <span class="c"># Split vertically</span>
+tmux split-window <span class="nt">-v</span>  <span class="c"># Split horizontally</span>
+
+<span class="c"># Arrange panes for development</span>
+<span class="c"># Left: Code editor</span>
+<span class="c"># Top-right: Terminal for running tests</span>
+<span class="c"># Bottom-right: Git status and logs</span>
+</code></pre></div></div> <h4 id="2-server-monitoring">2. Server Monitoring</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create monitoring session</span>
+tmux new-session <span class="nt">-s</span> monitor <span class="nt">-d</span>
+
+<span class="c"># Split into monitoring panes</span>
+tmux split-window <span class="nt">-h</span>
+tmux split-window <span class="nt">-v</span>
+
+<span class="c"># In different panes:</span>
+<span class="c"># htop</span>
+<span class="c"># iotop</span>
+<span class="c"># netstat -tulpn</span>
+<span class="c"># tail -f /var/log/syslog</span>
+</code></pre></div></div> <h4 id="3-collaborative-debugging">3. Collaborative Debugging</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create shared debugging session</span>
+tmux new-session <span class="nt">-s</span> debug <span class="nt">-d</span>
+
+<span class="c"># Share session with team member</span>
+tmux attach-session <span class="nt">-t</span> debug
+
+<span class="c"># Both users can see the same terminal</span>
+<span class="c"># Useful for pair programming or debugging</span>
+</code></pre></div></div> <h2 id="integration-ssh--tmux">Integration: SSH + tmux</h2> <h3 id="best-practices-for-remote-development">Best Practices for Remote Development</h3> <ol> <li><strong>Always use tmux for long-running processes</strong> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Start tmux session on remote server</span>
+ssh user@server <span class="s2">"tmux new-session -s work -d"</span>
+   
+<span class="c"># Attach to session</span>
+ssh user@server <span class="nt">-t</span> <span class="s2">"tmux attach-session -t work"</span>
+</code></pre></div> </div> </li> <li><strong>Use tmux for build processes</strong> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Start build in tmux</span>
+tmux new-session <span class="nt">-s</span> build <span class="nt">-d</span>
+tmux send-keys <span class="nt">-t</span> build <span class="s2">"make build"</span> Enter
+   
+<span class="c"># Detach and let it run</span>
+tmux detach-client <span class="nt">-s</span> build
+   
+<span class="c"># Check progress later</span>
+tmux attach-session <span class="nt">-t</span> build
+</code></pre></div> </div> </li> <li><strong>Persistent development sessions</strong> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create development session</span>
+tmux new-session <span class="nt">-s</span> dev <span class="nt">-d</span>
+   
+<span class="c"># Set up your development environment</span>
+tmux send-keys <span class="nt">-t</span> dev <span class="s2">"cd /project"</span> Enter
+tmux send-keys <span class="nt">-t</span> dev <span class="s2">"vim src/main.py"</span> Enter
+   
+<span class="c"># Detach and reconnect later</span>
+tmux detach-client <span class="nt">-s</span> dev
+</code></pre></div> </div> </li> </ol> <h3 id="troubleshooting-common-issues">Troubleshooting Common Issues</h3> <h4 id="ssh-connection-drops">SSH Connection Drops</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Add to ~/.ssh/config</span>
+Host <span class="k">*</span>
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+    TCPKeepAlive <span class="nb">yes</span>
+</code></pre></div></div> <h4 id="tmux-session-recovery">tmux Session Recovery</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># List all sessions</span>
+tmux list-sessions
+
+<span class="c"># Attach to specific session</span>
+tmux attach-session <span class="nt">-t</span> session_name
+
+<span class="c"># Kill broken session</span>
+tmux kill-session <span class="nt">-t</span> session_name
+</code></pre></div></div> <h2 id="conclusion">Conclusion</h2> <p>SSH and tmux form a powerful combination for remote development. SSH provides secure access to remote systems, while tmux ensures your work persists through network interruptions. By mastering these tools, you can:</p> <ul> <li>Work efficiently on remote servers</li> <li>Maintain persistent development sessions</li> <li>Collaborate effectively with team members</li> <li>Handle network interruptions gracefully</li> <li>Build robust remote development workflows</li> </ul> <p>Start with the basic commands and gradually incorporate more advanced features into your daily workflow. The investment in learning these tools will pay dividends in your productivity and development experience.</p> <h2 id="additional-resources">Additional Resources</h2> <ul> <li><a href="https://man.openbsd.org/tmux.1">tmux manual</a></li> <li><a href="https://www.openssh.com/manual.html">SSH documentation</a></li> <li><a href="https://tmuxcheatsheet.com/">tmux cheat sheet</a></li> <li><a href="https://www.ssh.com/academy/ssh/config">SSH config examples</a></li> </ul>]]></content><author><name></name></author><category term="notes"/><category term="development"/><category term="linux"/><category term="ssh"/><category term="tmux"/><category term="remote-development"/><category term="terminal"/><summary type="html"><![CDATA[A comprehensive guide to SSH and tmux for efficient remote development]]></summary></entry><entry><title type="html">SSH and tmux: Essential Tools for Remote Development</title><link href="https://jiahuic.github.io/notes/development/2025/01/27/ssh.html" rel="alternate" type="text/html" title="SSH and tmux: Essential Tools for Remote Development"/><published>2025-01-27T10:30:00+00:00</published><updated>2025-01-27T10:30:00+00:00</updated><id>https://jiahuic.github.io/notes/development/2025/01/27/ssh</id><content type="html" xml:base="https://jiahuic.github.io/notes/development/2025/01/27/ssh.html"><![CDATA[<h2 id="introduction">Introduction</h2> <p>Secure Shell (SSH) and tmux are essential tools for modern remote development and server management. SSH provides secure access to remote systems, while tmux enables persistent terminal sessions that survive network disconnections. Whether you’re managing servers, developing on remote machines, or collaborating with team members, mastering these tools will significantly boost your productivity.</p> <h2 id="ssh-secure-remote-access">SSH: Secure Remote Access</h2> <h3 id="choosing-an-ssh-client">Choosing an SSH Client</h3> <p>The default SSH client for both macOS and Linux systems is the built-in terminal. For Windows users, several alternatives are available:</p> <ul> <li><strong>Terminal (Mac and Linux)</strong>: Connect using <code class="language-plaintext highlighter-rouge">ssh username@host</code> in the terminal</li> <li><strong>Windows Options</strong>: PuTTY, Bitvise SSH Client, MobaXterm, or Windows Subsystem for Linux (WSL)</li> <li><strong>VS Code</strong>: Built-in terminal with Remote-SSH extension for seamless development</li> </ul> <h3 id="essential-ssh-tricks">Essential SSH Tricks</h3> <h4 id="1-key-based-authentication">1. Key-Based Authentication</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Generate SSH key pair</span>
+ssh-keygen <span class="nt">-t</span> ed25519 <span class="nt">-C</span> <span class="s2">"your_email@example.com"</span>
+
+<span class="c"># Copy public key to remote server</span>
+ssh-copy-id user@remote-server
+
+<span class="c"># Or manually copy the key</span>
+<span class="nb">cat</span> ~/.ssh/id_ed25519.pub | ssh user@remote-server <span class="s2">"mkdir -p ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys"</span>
+</code></pre></div></div> <h4 id="2-execute-commands-remotely">2. Execute Commands Remotely</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Run a single command</span>
+ssh user@remote-server <span class="s2">"ls -la /home/user"</span>
+
+<span class="c"># Run multiple commands</span>
+ssh user@remote-server <span class="s2">"cd /project &amp;&amp; git pull &amp;&amp; make build"</span>
+</code></pre></div></div> <h4 id="3-port-forwarding-and-tunneling">3. Port Forwarding and Tunneling</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Local port forwarding (forward local port to remote)</span>
+ssh <span class="nt">-L</span> 8888:localhost:8888 user@remote-server
+
+<span class="c"># Remote port forwarding (forward remote port to local)</span>
+ssh <span class="nt">-R</span> 8888:localhost:8888 user@remote-server
+
+<span class="c"># Dynamic SOCKS proxy</span>
+ssh <span class="nt">-D</span> 1080 user@remote-server
+</code></pre></div></div> <h4 id="4-jupyter-notebook-tunneling">4. Jupyter Notebook Tunneling</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># On remote server</span>
+jupyter notebook <span class="nt">--no-browser</span> <span class="nt">--port</span><span class="o">=</span>8888 <span class="nt">--ip</span><span class="o">=</span>0.0.0.0
+
+<span class="c"># On local machine</span>
+ssh <span class="nt">-L</span> 8889:localhost:8888 user@remote-server
+
+<span class="c"># Access via http://localhost:8889 in your browser</span>
+</code></pre></div></div> <h2 id="tmux-terminal-multiplexer">tmux: Terminal Multiplexer</h2> <h3 id="what-is-tmux">What is tmux?</h3> <p>tmux is a terminal multiplexer that allows you to:</p> <ul> <li>Create persistent terminal sessions that survive network disconnections</li> <li>Split terminals into multiple panes</li> <li>Create multiple windows within a session</li> <li>Share sessions with other users</li> <li>Detach and reattach to sessions</li> </ul> <h3 id="installing-tmux">Installing tmux</h3> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Ubuntu/Debian</span>
+<span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt <span class="nb">install </span>tmux
+
+<span class="c"># CentOS/RHEL/Fedora</span>
+<span class="nb">sudo </span>yum <span class="nb">install </span>tmux  <span class="c"># or sudo dnf install tmux</span>
+
+<span class="c"># macOS</span>
+brew <span class="nb">install </span>tmux
+
+<span class="c"># Arch Linux</span>
+<span class="nb">sudo </span>pacman <span class="nt">-S</span> tmux
+</code></pre></div></div> <h3 id="basic-tmux-commands">Basic tmux Commands</h3> <h4 id="session-management">Session Management</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Start new session</span>
+tmux
+
+<span class="c"># Start named session</span>
+tmux new-session <span class="nt">-s</span> mysession
+
+<span class="c"># List sessions</span>
+tmux list-sessions  <span class="c"># or tmux ls</span>
+
+<span class="c"># Attach to session</span>
+tmux attach-session <span class="nt">-t</span> mysession  <span class="c"># or tmux a -t mysession</span>
+
+<span class="c"># Detach from session</span>
+<span class="c"># Press Ctrl+b, then d</span>
+</code></pre></div></div> <h4 id="window-management">Window Management</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create new window</span>
+Ctrl+b, c
+
+<span class="c"># Switch between windows</span>
+Ctrl+b, n  <span class="c"># next window</span>
+Ctrl+b, p  <span class="c"># previous window</span>
+Ctrl+b, &lt;number&gt;  <span class="c"># switch to specific window</span>
+
+<span class="c"># Rename current window</span>
+Ctrl+b, ,
+
+<span class="c"># List windows</span>
+Ctrl+b, w
+</code></pre></div></div> <h4 id="pane-management">Pane Management</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Split pane horizontally</span>
+Ctrl+b, <span class="s2">"
+
+# Split pane vertically
+Ctrl+b, %
+
+# Switch between panes
+Ctrl+b, &lt;arrow-keys&gt;
+
+# Resize panes
+Ctrl+b, Ctrl+&lt;arrow-keys&gt;
+
+# Close current pane
+Ctrl+b, x
+</span></code></pre></div></div> <h3 id="advanced-tmux-features">Advanced tmux Features</h3> <h4 id="1-copy-mode">1. Copy Mode</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Enter copy mode</span>
+Ctrl+b, <span class="o">[</span>
+
+<span class="c"># Navigate with arrow keys or vim keys</span>
+<span class="c"># Press Space to start selection</span>
+<span class="c"># Press Enter to copy</span>
+<span class="c"># Paste with Ctrl+b, ]</span>
+</code></pre></div></div> <h4 id="2-tmux-configuration">2. tmux Configuration</h4> <p>Create <code class="language-plaintext highlighter-rouge">~/.tmux.conf</code> for custom settings:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Enable mouse support</span>
+<span class="nb">set</span> <span class="nt">-g</span> mouse on
+
+<span class="c"># Set base index to 1</span>
+<span class="nb">set</span> <span class="nt">-g</span> base-index 1
+setw <span class="nt">-g</span> pane-base-index 1
+
+<span class="c"># Increase scrollback buffer</span>
+<span class="nb">set</span> <span class="nt">-g</span> history-limit 10000
+
+<span class="c"># Enable vi keys</span>
+setw <span class="nt">-g</span> mode-keys vi
+
+<span class="c"># Status bar customization</span>
+<span class="nb">set</span> <span class="nt">-g</span> status-bg black
+<span class="nb">set</span> <span class="nt">-g</span> status-fg white
+<span class="nb">set</span> <span class="nt">-g</span> status-left <span class="s1">'#[fg=green]#S'</span>
+</code></pre></div></div> <h4 id="3-session-sharing">3. Session Sharing</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create shared session</span>
+tmux new-session <span class="nt">-s</span> shared <span class="nt">-d</span>
+
+<span class="c"># Allow others to attach</span>
+tmux attach-session <span class="nt">-t</span> shared
+
+<span class="c"># Other users can attach with</span>
+tmux attach-session <span class="nt">-t</span> shared
+</code></pre></div></div> <h3 id="practical-tmux-workflows">Practical tmux Workflows</h3> <h4 id="1-development-environment">1. Development Environment</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Start development session</span>
+tmux new-session <span class="nt">-s</span> dev <span class="nt">-d</span>
+
+<span class="c"># Split into multiple panes</span>
+tmux split-window <span class="nt">-h</span>  <span class="c"># Split vertically</span>
+tmux split-window <span class="nt">-v</span>  <span class="c"># Split horizontally</span>
+
+<span class="c"># Arrange panes for development</span>
+<span class="c"># Left: Code editor</span>
+<span class="c"># Top-right: Terminal for running tests</span>
+<span class="c"># Bottom-right: Git status and logs</span>
+</code></pre></div></div> <h4 id="2-server-monitoring">2. Server Monitoring</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create monitoring session</span>
+tmux new-session <span class="nt">-s</span> monitor <span class="nt">-d</span>
+
+<span class="c"># Split into monitoring panes</span>
+tmux split-window <span class="nt">-h</span>
+tmux split-window <span class="nt">-v</span>
+
+<span class="c"># In different panes:</span>
+<span class="c"># htop</span>
+<span class="c"># iotop</span>
+<span class="c"># netstat -tulpn</span>
+<span class="c"># tail -f /var/log/syslog</span>
+</code></pre></div></div> <h4 id="3-collaborative-debugging">3. Collaborative Debugging</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create shared debugging session</span>
+tmux new-session <span class="nt">-s</span> debug <span class="nt">-d</span>
+
+<span class="c"># Share session with team member</span>
+tmux attach-session <span class="nt">-t</span> debug
+
+<span class="c"># Both users can see the same terminal</span>
+<span class="c"># Useful for pair programming or debugging</span>
+</code></pre></div></div> <h2 id="integration-ssh--tmux">Integration: SSH + tmux</h2> <h3 id="best-practices-for-remote-development">Best Practices for Remote Development</h3> <ol> <li><strong>Always use tmux for long-running processes</strong> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Start tmux session on remote server</span>
+ssh user@server <span class="s2">"tmux new-session -s work -d"</span>
+   
+<span class="c"># Attach to session</span>
+ssh user@server <span class="nt">-t</span> <span class="s2">"tmux attach-session -t work"</span>
+</code></pre></div> </div> </li> <li><strong>Use tmux for build processes</strong> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Start build in tmux</span>
+tmux new-session <span class="nt">-s</span> build <span class="nt">-d</span>
+tmux send-keys <span class="nt">-t</span> build <span class="s2">"make build"</span> Enter
+   
+<span class="c"># Detach and let it run</span>
+tmux detach-client <span class="nt">-s</span> build
+   
+<span class="c"># Check progress later</span>
+tmux attach-session <span class="nt">-t</span> build
+</code></pre></div> </div> </li> <li><strong>Persistent development sessions</strong> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create development session</span>
+tmux new-session <span class="nt">-s</span> dev <span class="nt">-d</span>
+   
+<span class="c"># Set up your development environment</span>
+tmux send-keys <span class="nt">-t</span> dev <span class="s2">"cd /project"</span> Enter
+tmux send-keys <span class="nt">-t</span> dev <span class="s2">"vim src/main.py"</span> Enter
+   
+<span class="c"># Detach and reconnect later</span>
+tmux detach-client <span class="nt">-s</span> dev
+</code></pre></div> </div> </li> </ol> <h3 id="troubleshooting-common-issues">Troubleshooting Common Issues</h3> <h4 id="ssh-connection-drops">SSH Connection Drops</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Add to ~/.ssh/config</span>
+Host <span class="k">*</span>
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+    TCPKeepAlive <span class="nb">yes</span>
+</code></pre></div></div> <h4 id="tmux-session-recovery">tmux Session Recovery</h4> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># List all sessions</span>
+tmux list-sessions
+
+<span class="c"># Attach to specific session</span>
+tmux attach-session <span class="nt">-t</span> session_name
+
+<span class="c"># Kill broken session</span>
+tmux kill-session <span class="nt">-t</span> session_name
+</code></pre></div></div> <h2 id="conclusion">Conclusion</h2> <p>SSH and tmux form a powerful combination for remote development. SSH provides secure access to remote systems, while tmux ensures your work persists through network interruptions. By mastering these tools, you can:</p> <ul> <li>Work efficiently on remote servers</li> <li>Maintain persistent development sessions</li> <li>Collaborate effectively with team members</li> <li>Handle network interruptions gracefully</li> <li>Build robust remote development workflows</li> </ul> <p>Start with the basic commands and gradually incorporate more advanced features into your daily workflow. The investment in learning these tools will pay dividends in your productivity and development experience.</p> <h2 id="additional-resources">Additional Resources</h2> <ul> <li><a href="https://man.openbsd.org/tmux.1">tmux manual</a></li> <li><a href="https://www.openssh.com/manual.html">SSH documentation</a></li> <li><a href="https://tmuxcheatsheet.com/">tmux cheat sheet</a></li> <li><a href="https://www.ssh.com/academy/ssh/config">SSH config examples</a></li> </ul>]]></content><author><name></name></author><category term="notes"/><category term="development"/><category term="linux"/><category term="ssh"/><category term="tmux"/><category term="remote-development"/><category term="terminal"/><summary type="html"><![CDATA[A comprehensive guide to SSH and tmux for efficient remote development]]></summary></entry><entry><title type="html">Editor: start with vim, end with neovim</title><link href="https://jiahuic.github.io/notes/2023/12/22/editor.html" rel="alternate" type="text/html" title="Editor: start with vim, end with neovim"/><published>2023-12-22T13:51:00+00:00</published><updated>2023-12-22T13:51:00+00:00</updated><id>https://jiahuic.github.io/notes/2023/12/22/editor</id><content type="html" xml:base="https://jiahuic.github.io/notes/2023/12/22/editor.html"><![CDATA[<h3 id="introduction">Introduction</h3> <p>I have been using vim for a long time, and I am very satisfied with it. Especially, I need to use it to edit files and test code on the server. vim has a step-function learning curve, and it is very difficult to master it. But once you master it, you will find that it is very powerful and efficient. Interestingly, it is my first editor and before that I only had coding experience in the matlab editor. My PhD advisor introduced me to vim and I have been using it since then. I still remember that during the meeting, he was teaching me how to use <code class="language-plaintext highlighter-rouge">hjkl</code> to move the cursor, and I was very confused at the time. I hadn’t use vim for a long time as the Atom editor was released and popular at 2015, then followed by VS Code. I kind of switched between them depending on the environments and the projects. More likely, due to the large amount of working on the server, I am used to use vim to edit files and abondoned the mouse as well as Atom and VS Code. Recently, I started to use neovim, which is a fork of vim. It has more plugin capabilities and is more suitable for modern development. I will introduce the editors I have used and the plugins I have used in vim and neovim for my own reference.</p>]]></content><author><name></name></author><category term="notes"/><category term="linux,"/><category term="code"/><summary type="html"><![CDATA[a collection of editors]]></summary></entry><entry><title type="html">Setting up Workstation for Research</title><link href="https://jiahuic.github.io/configuration/2023/11/27/server.html" rel="alternate" type="text/html" title="Setting up Workstation for Research"/><published>2023-11-27T15:09:00+00:00</published><updated>2023-11-27T15:09:00+00:00</updated><id>https://jiahuic.github.io/configuration/2023/11/27/server</id><content type="html" xml:base="https://jiahuic.github.io/configuration/2023/11/27/server.html"><![CDATA[<h3 id="introduction">Introduction</h3> <p>The workstation is a Dell Precision-5820 with 64 GB of RAM and 2 TB of SSD. The OS is Ubuntu Linux. The workstation is used for research and development.</p> <h3 id="to-set-up-the-ssh-server">To set up the SSH server</h3> <ol> <li><strong>Install OpenSSH Server</strong>: If not already installed, you need to install the OpenSSH Server software. You can do this by opening a terminal and running: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install </span>openssh-server
+</code></pre></div> </div> </li> <li><strong>Check SSH Service Status</strong>: Ensure that the SSH service is running with the command: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl status ssh
+</code></pre></div> </div> </li> <li><strong>Configure SSH (Optional)</strong>: You can configure SSH settings by editing the SSH configuration file: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nano /etc/ssh/sshd_config
+</code></pre></div> </div> <p>Here, you can change settings like the port number, permit root login, and more. After editing, restart the SSH service to apply changes:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl restart ssh
+</code></pre></div> </div> </li> <li><strong>Firewall Configuration</strong>: Make sure the firewall allows SSH connections. You can allow SSH through the firewall with: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ufw allow ssh
+</code></pre></div> </div> <p>and enable the firewall using:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ufw <span class="nb">enable</span>
+</code></pre></div> </div> </li> <li><strong>Find Your Workstation’s IP Address</strong>: You need to know your workstation’s IP address to connect from another computer. You can find it by running: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip a
+</code></pre></div> </div> </li> <li><strong>Connect from Campus Network</strong>: From another computer on the campus network, you can connect to your workstation using: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh username@your_workstation_ip
+</code></pre></div> </div> <p>Replace <code class="language-plaintext highlighter-rouge">username</code> with your username on the Ubuntu workstation and <code class="language-plaintext highlighter-rouge">your_workstation_ip</code> with the workstation’s IP address.</p> </li> <li><strong>Additional Configurations (If Needed)</strong>: <ul> <li><strong>Static IP</strong>: Consider setting a static IP for the workstation if you don’t want its IP to change.</li> <li><strong>Port Forwarding</strong>: If you need to access the server from outside the campus network, you might need to set up port forwarding on your network router.</li> <li><strong>SSH Key Authentication</strong>: For added security, consider setting up SSH key-based authentication.</li> </ul> </li> </ol> <h3 id="configure-the-ssh-client">Configure the ssh client</h3> <p>As for editing the SSH configuration file, here are some common changes you might consider:</p> <ol> <li><strong>Change the Default SSH Port (Optional for Security)</strong>: By default, SSH uses port 22. Changing this to a non-standard port can add a layer of security through obscurity. <ul> <li>To change the port, find the line in <code class="language-plaintext highlighter-rouge">/etc/ssh/sshd_config</code> that says <code class="language-plaintext highlighter-rouge">#Port 22</code> and change it to something like <code class="language-plaintext highlighter-rouge">Port 22</code> (or another port of your choice).</li> </ul> </li> <li> <p><strong>Disable Root Login (Recommended for Security)</strong>: To prevent the root user from logging in via SSH, find the line that says <code class="language-plaintext highlighter-rouge">#PermitRootLogin yes</code> and change it to <code class="language-plaintext highlighter-rouge">PermitRootLogin no</code>.</p> </li> <li><strong>Allow or Deny Specific Users (Optional)</strong>: You can specify which users are allowed or denied SSH access. <ul> <li>To allow specific users, add a line like <code class="language-plaintext highlighter-rouge">AllowUsers jiahuic</code> (replace <code class="language-plaintext highlighter-rouge">jiahuic</code> with the desired username).</li> <li>To deny specific users, add a line like <code class="language-plaintext highlighter-rouge">DenyUsers someuser</code>.</li> </ul> </li> <li><strong>Use SSH Key Authentication (Recommended for Security)</strong>: For added security, consider setting up SSH key-based authentication instead of using password authentication. This involves generating an SSH key pair and adding the public key to the <code class="language-plaintext highlighter-rouge">~/.ssh/authorized_keys</code> file on your server.</li> </ol> <p>After making any changes, save the file and restart the SSH service to apply them:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl restart ssh
+</code></pre></div></div> <p>With these settings, you can connect to your server from another computer on your campus network using:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh username@your_workstation_ip
+</code></pre></div></div> <ol> <li><strong>Link local ssh key to remote server</strong>: To link your local ssh key to the remote server, you can use the following command: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh-copy-id <span class="nt">-i</span> ~/.ssh/id_rsa.pub username@your_workstation_ip
+</code></pre></div> </div> <p>This command will copy your local ssh key to the remote server. You can then use the following command to login to the remote server:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh username@your_workstation_ip
+</code></pre></div> </div> </li> </ol> <h3 id="server-sleep-and-suspend-modes">Server Sleep and Suspend Modes</h3> <p>To ensure your server remains active and doesn’t enter a sleep mode (which can lead to the ‘client_loop: send disconnect: Broken pipe’ error during SSH sessions), you can configure your Ubuntu server to disable sleep and suspend modes. Here’s how to do it:</p> <ol> <li><strong>Disable Sleep and Suspend Using System Settings</strong>: <ul> <li>Open the terminal.</li> <li>Run the following command to prevent the server from sleeping: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+</code></pre></div> </div> </li> <li>This command stops the system from entering sleep, suspend, hibernate, or hybrid-sleep states.</li> </ul> </li> <li><strong>Edit Power Management Settings</strong>: <ul> <li>If you have a graphical interface, you can also change these settings in the power management section of your system settings. Look for options like “When the lid is closed” or “Sleep” and set them to ‘Do Nothing’ or ‘Never’.</li> </ul> </li> <li><strong>Edit/Check <code class="language-plaintext highlighter-rouge">/etc/ssh/sshd_config</code></strong>: <ul> <li>Sometimes, SSH connections may drop due to server-side settings. You should ensure that <code class="language-plaintext highlighter-rouge">ClientAliveInterval</code> and <code class="language-plaintext highlighter-rouge">ClientAliveCountMax</code> are configured in your SSH configuration file (<code class="language-plaintext highlighter-rouge">/etc/ssh/sshd_config</code>) to keep the connection alive.</li> <li>You can add or edit these lines: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ClientAliveInterval 120
+ClientAliveCountMax 720
+</code></pre></div> </div> </li> <li>After editing, restart the SSH service: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl restart ssh
+</code></pre></div> </div> </li> <li>These settings will send a signal every 120 seconds and keep the connection alive unless the client fails to respond 720 times.</li> </ul> </li> <li><strong>Use <code class="language-plaintext highlighter-rouge">tmux</code> or <code class="language-plaintext highlighter-rouge">screen</code></strong>: <ul> <li>For long-running processes like Jupyter Notebooks, consider using a terminal multiplexer like <code class="language-plaintext highlighter-rouge">tmux</code> or <code class="language-plaintext highlighter-rouge">screen</code>. These tools allow you to detach from a session and leave it running in the background. You can then reattach to this session later, even after getting disconnected.</li> </ul> </li> <li><strong>Cron Job to Keep the Server Awake</strong>: <ul> <li>As a last resort, you can set up a cron job to execute a harmless command at regular intervals to keep the server awake.</li> <li>Open the cron job file with <code class="language-plaintext highlighter-rouge">crontab -e</code> and add a line like: ```bash <ul> <li> <ul> <li> <ul> <li> <ul> <li> <ul> <li>/bin/true ```</li> </ul> </li> </ul> </li> </ul> </li> </ul> </li> </ul> </li> <li>This command does nothing but runs every minute to keep the system active.</li> </ul> </li> </ol> <h3 id="setup-nvidia-driver-cuda-and-cudnn">Setup NVIDIA Driver, CUDA, and cuDNN</h3> <p>This part should be very careful. If you install the wrong version of NVIDIA driver or update it unproperly, you may not be able to find the driver.</p> <ol> <li>Disable the secure boot in the BIOS.</li> <li>Remove any NIVIDA driver installed by Ubuntu. <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get purge nvidia<span class="k">*</span>
+</code></pre></div> </div> </li> <li>Add the Proprietary GPU Drivers PPA. <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>add-apt-repository ppa:graphics-drivers/ppa
+<span class="nb">sudo </span>apt-get update
+</code></pre></div> </div> </li> <li>Blacklist the Nouveau driver. <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>bash <span class="nt">-c</span> <span class="s2">"echo blacklist nouveau &gt; /etc/modprobe.d/blacklist-nvidia-nouveau.conf"</span>
+<span class="nb">sudo </span>bash <span class="nt">-c</span> <span class="s2">"echo options nouveau modeset=0 &gt;&gt; /etc/modprobe.d/blacklist-nvidia-nouveau.conf"</span>
+</code></pre></div> </div> </li> <li>Auto-Install Recommended Drivers <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ubuntu-drivers autoinstall
+</code></pre></div> </div> <p>Or, you can install the specific version of the driver.</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>nvidia-driver-540
+</code></pre></div> </div> </li> <li>Install CUDA Toolkit (<a href="https://developer.nvidia.com/cuda-downloads?target_os=Linux&amp;target_arch=x86_64&amp;Distribution=Ubuntu&amp;target_version=20.04&amp;target_type=deb_network">CUDA Toolkit download page</a></li> <li>Set Environment Variables <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'export PATH=/usr/local/cuda-11.2/bin${PATH:+:${PATH}}'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">echo</span> <span class="s1">'export LD_LIBRARY_PATH=/usr/local/cuda-11.2/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">source</span> ~/.bashrc
+</code></pre></div> </div> </li> <li>Install cuDNN (<a href="https://developer.nvidia.com/rdp/cudnn-download">cuDNN download page</a>)</li> </ol> <h3 id="other-useful-tools">Other Useful Tools</h3> <ul> <li><strong>Change bash to zsh</strong>: <code class="language-plaintext highlighter-rouge">sudo apt install zsh</code></li> <li><strong>Install nodejs</strong>: <ul> <li>Install <code class="language-plaintext highlighter-rouge">nvm</code>: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-o-</span> https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+</code></pre></div> </div> </li> <li>Install <code class="language-plaintext highlighter-rouge">nodejs</code>: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nvm <span class="nb">install </span>node
+</code></pre></div> </div> </li> </ul> </li> </ul>]]></content><author><name></name></author><category term="configuration"/><category term="linux"/><category term="install"/><summary type="html"><![CDATA[an easy installation and set up for people who want to use arch linux for research]]></summary></entry><entry><title type="html">Change Ubuntu to Arch Linux</title><link href="https://jiahuic.github.io/configuration/2023/11/27/Ubuntu2arch.html" rel="alternate" type="text/html" title="Change Ubuntu to Arch Linux"/><published>2023-11-27T15:09:00+00:00</published><updated>2023-11-27T15:09:00+00:00</updated><id>https://jiahuic.github.io/configuration/2023/11/27/Ubuntu2arch</id><content type="html" xml:base="https://jiahuic.github.io/configuration/2023/11/27/Ubuntu2arch.html"><![CDATA[<p>I have a personal desktop using Ubuntu 22.04. And I did one more step that I followed the <em>Ubuntu 22.04 Customization</em> by LinuxScoop to make it more beautiful. However, I keep having some problems with the Ubuntu Desktop, such as CapsLock changed back, and some function keys disfunctional. And the most unacceptable thing is the fan is always running at high speed, which makes me feel like I am in a server room. Also, the tilling window manager has its benefits. I decided to change my Ubuntu Desktop to Arch Linux. Without losing the entertainment function, I will install the Arch Linux with the dual boot with the linux mint.</p> <p>Here is some steps I did before I start to install Arch Linux.</p> <ul> <li>backup the data <ul> <li><a href="#backup-the-ssh-key">SSH key</a></li> <li>Notes folder</li> <li>Documents folder</li> <li>Garage folder</li> </ul> </li> <li>partition the disk. I will install the Arch Linux with the dual boot with the linux mint. <ol> <li>Clean the existing partitions <ul> <li>Run <code class="language-plaintext highlighter-rouge">lsblk</code> to check the partitions</li> <li>Start <code class="language-plaintext highlighter-rouge">fdisk</code>, for example <code class="language-plaintext highlighter-rouge">fdisk /dev/sda</code></li> <li>Input <code class="language-plaintext highlighter-rouge">p</code> to print the partitions</li> <li>Input <code class="language-plaintext highlighter-rouge">d</code> to delete the partitions</li> <li>Input <code class="language-plaintext highlighter-rouge">w</code> to write the changes</li> </ul> </li> <li>Create the new partitions <ul> <li>Run <code class="language-plaintext highlighter-rouge">fdisk /dev/sda</code></li> <li>Input <code class="language-plaintext highlighter-rouge">n</code> to create a new partition</li> <li>For end sector, input <code class="language-plaintext highlighter-rouge">+512M</code> for the boot partition</li> <li>Input <code class="language-plaintext highlighter-rouge">w</code> to write the changes</li> </ul> </li> <li>Formatting the Partitions <ul> <li>Run <code class="language-plaintext highlighter-rouge">mkfs.fat -F32 /dev/sda1</code> to format the boot partition</li> <li>Run <code class="language-plaintext highlighter-rouge">mkfs.ext4 /dev/sda2</code> to format the root partition</li> </ul> </li> <li>Mounting the Partitions <ul> <li>Run <code class="language-plaintext highlighter-rouge">mount /dev/sda2 /mnt</code> to mount the root partition</li> <li>Run <code class="language-plaintext highlighter-rouge">mkdir /mnt/boot</code> to create the boot directory</li> <li>Run <code class="language-plaintext highlighter-rouge">mount /dev/sda1 /mnt/boot</code> to mount the boot partition</li> </ul> </li> <li>During the installation, manually change the disk configuration <ul> <li>Select <code class="language-plaintext highlighter-rouge">Manual partitioning</code></li> <li>Assign Mont Point <code class="language-plaintext highlighter-rouge">/</code> to the root partition, <code class="language-plaintext highlighter-rouge">/boot</code> to the boot partition, and <code class="language-plaintext highlighter-rouge">/home</code> to the home partition</li> </ul> </li> </ol> </li> <li>install the linux mint <ol> <li>I also think about a dual system with the same <code class="language-plaintext highlighter-rouge">/home</code>, but it might casue more problems. Clearly, you can expect the configuration files are quit different in both systems.</li> <li>Convert MBR to GPT <ul> <li>Run <code class="language-plaintext highlighter-rouge">gdisk /dev/sda</code></li> <li>Input <code class="language-plaintext highlighter-rouge">r</code> to enter the recovery and transformation menu</li> <li>Input <code class="language-plaintext highlighter-rouge">g</code> to convert MBR to GPT</li> <li>Input <code class="language-plaintext highlighter-rouge">p</code> to print the partitions</li> <li>Input <code class="language-plaintext highlighter-rouge">w</code> to write the changes</li> </ul> </li> <li>Install the linux mint without write the boot loader <ul> <li>Run <code class="language-plaintext highlighter-rouge">ubiquity -b</code> to install the linux mint without write the boot loader</li> </ul> </li> <li>Login to the archlinux <ul> <li>Uncomment the <code class="language-plaintext highlighter-rouge">GRUB_DISABLE_OS_PROBER=false</code> in the <code class="language-plaintext highlighter-rouge">/etc/default/grub</code></li> <li>Run <code class="language-plaintext highlighter-rouge">sudo grub-mkconfig -o /boot/grub/grub.cfg</code> to update the grub</li> </ul> </li> </ol> </li> </ul> <h4 id="backup-the-ssh-key">Backup the ssh key</h4> <h5 id="before-reinstalling-your-system">Before Reinstalling Your System</h5> <ol> <li><strong>Locate Your SSH Keys</strong>: <ul> <li>By default, your private and public SSH keys are stored in <code class="language-plaintext highlighter-rouge">~/.ssh/</code>.</li> <li>The private key is typically named <code class="language-plaintext highlighter-rouge">id_rsa</code>, and the public key is typically named <code class="language-plaintext highlighter-rouge">id_rsa.pub</code> (for RSA keys; other types like ECDSA or Ed25519 will have different file names).</li> </ul> </li> <li><strong>Backup Your SSH Keys</strong>: <ul> <li>Copy these files to a secure backup location. You can use an external drive, a USB stick, or a secure cloud storage service.</li> <li>It’s critical to keep your private key (<code class="language-plaintext highlighter-rouge">id_rsa</code>) secure and confidential.</li> </ul> </li> </ol> <h5 id="after-reinstalling-your-system">After Reinstalling Your System</h5> <ol> <li><strong>Restore Your SSH Keys</strong>: <ul> <li>Copy the backed-up SSH key files back into the <code class="language-plaintext highlighter-rouge">~/.ssh/</code> directory in your home folder on the new system.</li> <li>If the <code class="language-plaintext highlighter-rouge">~/.ssh/</code> directory doesn’t exist, you can create it with <code class="language-plaintext highlighter-rouge">mkdir ~/.ssh</code>.</li> </ul> </li> <li><strong>Set Correct Permissions</strong>: <ul> <li>SSH keys require strict file permissions set for security. Set the correct permissions: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod </span>700 ~/.ssh
+<span class="nb">chmod </span>600 ~/.ssh/id_rsa
+<span class="nb">chmod </span>644 ~/.ssh/id_rsa.pub
+</code></pre></div> </div> </li> <li>Adjust the filenames if your keys have different names.</li> </ul> </li> <li><strong>Check SSH Agent and Add Keys if Necessary</strong>: <ul> <li>If you use an SSH agent, add your SSH key to it: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh-add ~/.ssh/id_rsa
+</code></pre></div> </div> </li> </ul> </li> <li><strong>Test Your SSH Key</strong>: <ul> <li>Try connecting to a server where your SSH key was previously authorized to ensure it works correctly.</li> </ul> </li> </ol> <h5 id="notes">Notes</h5> <ul> <li><strong>Security</strong>: Always handle your SSH keys securely. The private key should never be shared or exposed to anyone.</li> <li><strong>Key Types</strong>: If you’re using a different type of key (like ECDSA or Ed25519), the file names will be different. Make sure to backup the correct key files.</li> <li><strong>New Installation</strong>: Ensure that the SSH client is installed on your new system. It typically is installed by default in Ubuntu.</li> <li><strong>e2fsprogs</strong>: the archlinux always has the lastest version of the e2fsprogs, which is used to format the disk. However, the linux mint 20.04 has the old version of the e2fsprogs.</li> </ul> <h4 id="reference">Reference</h4> <ul> <li>This is a very useful blog about how to update the grub <a href="https://averagelinuxuser.com/dual-boot-arch-linux-with-linux/">link</a></li> </ul>]]></content><author><name></name></author><category term="configuration"/><category term="linux"/><category term="install"/><summary type="html"><![CDATA[I changed my Ubuntu Desktop to Arch Linux]]></summary></entry><entry><title type="html">Setting up Arch Linux for Research</title><link href="https://jiahuic.github.io/configuration/2023/07/11/archlinux.html" rel="alternate" type="text/html" title="Setting up Arch Linux for Research"/><published>2023-07-11T15:09:00+00:00</published><updated>2023-07-11T15:09:00+00:00</updated><id>https://jiahuic.github.io/configuration/2023/07/11/archlinux</id><content type="html" xml:base="https://jiahuic.github.io/configuration/2023/07/11/archlinux.html"><![CDATA[<h3 id="introduction">Introduction</h3> <p>Welcome to this comprehensive guide on setting up Arch Linux for research. This blog post is intended for anyone interested in using Arch Linux for their research activities. We’ll walk you through the installation process, highlighting common issues and their solutions. Additionally, we’ll guide you through configuring your system for optimal performance. Let’s get started!</p> <p><strong>NOTE</strong>: it is highly recommended to read the arch wiki.</p> <p><strong>NOTE</strong>: on Lenovo T490, Intel(R) Core(TM) i5-8265U CPU @ 1.60GHz</p> <h3 id="pre-installation-tips-and-troubleshooting">Pre-installation Tips and Troubleshooting</h3> <p>Before we dive into the installation process, there are a few things you need to know:</p> <ol> <li><strong>Configuration Updates:</strong> In the installer, you might encounter some issues related to the <code class="language-plaintext highlighter-rouge">self._config[key]</code> in the <code class="language-plaintext highlighter-rouge">/usr/lib/python3.10/site-packages/archinstall/lib/configuration.py</code> file. To avoid this, add <code class="language-plaintext highlighter-rouge">if key == 'disk_encryption' and self._config[key]:</code> to avoid faults before the installation. (this is no longer needed for 23.11)</li> <li><strong>Connecting to WiFi:</strong> During the installation, you may need to connect to WiFi. We’ll explain how to do this in a later <a href="#connect-to-wifi">section</a>, so for now, just be aware that this is a step you’ll need to take.</li> <li><strong>Running the Installation Script:</strong> To begin the installation process, you’ll need to type <code class="language-plaintext highlighter-rouge">archinstall</code> in the terminal. <ul> <li>Bootloader: grub-install</li> <li>Drive(s): this is tricky. If you have a small SSD and a large HDD, you might want to install the system on the SSD and use the HDD as a storage. In this case, you need to partition the SSD and HDD separately. If you have only one SSD, you can partition it as you wish. <strong>in my case</strong>, I have a large SSD. I just choose the SSD and then mount the HDD to the <code class="language-plaintext highlighter-rouge">/home/HDD</code> or <code class="language-plaintext highlighter-rouge">/mnt</code> folder.</li> <li>Disk layout: ext4</li> <li>Audio server: pulseaudio</li> <li>Profile: awesome, NVIDIA (proprietary)</li> <li>Optional repositories: multilib</li> </ul> </li> <li><strong>Choosing the Filesystem and Partition:</strong> When the script prompts you to choose a filesystem, select ext4. You won’t need to set up any extra partitions.</li> <li><strong>Selecting an Audio Server:</strong> For the audio server, choose pulseaudio.</li> <li><strong>Installing Additional Packages:</strong> You’ll also be prompted to install additional packages. Here, select: <code class="language-plaintext highlighter-rouge">htop</code>, <code class="language-plaintext highlighter-rouge">neofetch</code>, <code class="language-plaintext highlighter-rouge">neovim</code>, <code class="language-plaintext highlighter-rouge">git</code>, and <code class="language-plaintext highlighter-rouge">firefox</code>.</li> <li><strong>Choosing a Desktop Environment:</strong> When it comes to selecting the desktop environment, I recommend choosing <code class="language-plaintext highlighter-rouge">awesome</code>. If you’re unsure what a desktop environment is, check out this <a href="README_linux.md">resource</a>.</li> </ol> <p>That’s it for the pre-installation tips and troubleshooting. In the next section, we’ll dive into the things you need to do after installing Arch Linux.</p> <h3 id="things-to-do-after-installation">Things to do after Installation</h3> <p>Once you have succssfully installed Arch Linux, there are a few additional steps to optimize your system for research:</p> <ol> <li><strong>Configure Pacman</strong>: In <code class="language-plaintext highlighter-rouge">/etc/pacman.conf</code>, uncomment <code class="language-plaintext highlighter-rouge">Color</code> and <code class="language-plaintext highlighter-rouge">ParallelDownloads</code>, and add <code class="language-plaintext highlighter-rouge">ILoveCandy</code>. This will enhance the readability and speed of your package manager.</li> <li><strong>Install and Configure Zsh</strong>: Install <code class="language-plaintext highlighter-rouge">zsh</code> and <code class="language-plaintext highlighter-rouge">oh-my-zsh</code> and make <code class="language-plaintext highlighter-rouge">zsh</code> your default shell. When you install <code class="language-plaintext highlighter-rouge">oh-my-zsh</code>, it will prompt you to set it as the default. In your <code class="language-plaintext highlighter-rouge">.zprofile</code>, add the following code to start X at login: <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if [ -z "${DISPLAY}" ] &amp;&amp; [ "${XDG_VTNR}" -eq 1 ]; then
+  exec startx
+fi
+</code></pre></div> </div> </li> <li><strong>Install Useful Utilities</strong>: install <code class="language-plaintext highlighter-rouge">picom</code>, <code class="language-plaintext highlighter-rouge">fzf</code>, <code class="language-plaintext highlighter-rouge">tmux</code>, <code class="language-plaintext highlighter-rouge">exa</code>, <code class="language-plaintext highlighter-rouge">zip</code>, <code class="language-plaintext highlighter-rouge">unzip</code>, <code class="language-plaintext highlighter-rouge">alsa-utils</code>, <code class="language-plaintext highlighter-rouge">noto-fonts-cjk</code>, <code class="language-plaintext highlighter-rouge">exa</code>, <code class="language-plaintext highlighter-rouge">bat</code>, <code class="language-plaintext highlighter-rouge">skype</code>, <code class="language-plaintext highlighter-rouge">discord</code>, <code class="language-plaintext highlighter-rouge">zoom</code>, <code class="language-plaintext highlighter-rouge">TexStudio</code>, <code class="language-plaintext highlighter-rouge">anaconda</code>, <code class="language-plaintext highlighter-rouge">texlive-core</code>, <code class="language-plaintext highlighter-rouge">pcmanfm</code>, <code class="language-plaintext highlighter-rouge">gcc-fortran</code>, <code class="language-plaintext highlighter-rouge">docker</code> (<code class="language-plaintext highlighter-rouge">sudo systemctl start docker</code>), <code class="language-plaintext highlighter-rouge">ruby</code>, etc.</li> <li><a href="#screen-tearing">Check screen tearing</a>: Screen tearing can be annoying and disrupt your workflow. Check the later section.</li> <li><a href="#install-font">Install font</a>: A good set of fonts can make your system look clean and be easy on the eyes.</li> <li><strong>Key setup</strong>: Set up your keys using <code class="language-plaintext highlighter-rouge">.Xmodmap</code> with the following configuration: <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>clear lock
+clear control
+add control = Caps_Lock Control_L Control_R
+keycode 66 = Control_L Caps_Lock NoSymbol NoSymbol
+</code></pre></div> </div> </li> <li><strong>Fix Lenovo T490 Brightness function keys</strong>: If you are using a Lenovo T490, you might experience issues with brightness function keys. To resolve this, edit <code class="language-plaintext highlighter-rouge">/etc/default/grub</code> with <code class="language-plaintext highlighter-rouge">GRUB_CMDLINE_LINUX_DEFAULT="quiet pcie_aspm=force acpi_osi="</code> and then run <code class="language-plaintext highlighter-rouge">$ sudo grub-mkconfig -o /boot/grub/grub.cfg</code>. Please note that this could potentially cause issues with your system, so proceed with caution.</li> <li><strong>Audio Control Setup</strong>: Set up audio control by installing <code class="language-plaintext highlighter-rouge">xbindkyes</code> using the command <code class="language-plaintext highlighter-rouge">sudo pacman -S xbindkeys</code>. You can find more details about how to use <code class="language-plaintext highlighter-rouge">xbindkeys</code> <a href="https://wiki.archlinux.org/title/Xbindkeys">here</a></li> <li><strong>Setup xinitrc</strong>: Copy the system <code class="language-plaintext highlighter-rouge">xinitrc</code> to your home directory using the command ` $ cp /etc/X11/xinit/xinitrc ~/.xinitrc <code class="language-plaintext highlighter-rouge">. Add </code>xbindkeys &amp;<code class="language-plaintext highlighter-rouge"> to </code>.xinitrc<code class="language-plaintext highlighter-rouge"> to start </code>xbindkeys` when you start X.</li> <li><strong>Enable Touchpad Tapping</strong>: Add <code class="language-plaintext highlighter-rouge">40-libinput.conf</code> to enable tapping and other toughpad features. Here is a sample configuration: <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Section "InputClass"
+Identifier "libinput touchpad"
+MatchIsTouchpad "on"
+MatchDevicePath "/dev/input/event*"
+Driver "libinput"
+Option "Tapping" "on"
+Option "NaturalScrolling" "true" # Optional: Enable natural scrolling
+EndSection
+</code></pre></div> </div> </li> <li><strong>Prevent Accidental Shutdowns</strong>: Configure Display Power Management Signaling (DPMS) to prevent your PC from shutting down accidentally. Check <code class="language-plaintext highlighter-rouge">10-monitor.conf</code> for the correct settings.</li> <li><strong>Setup Screen Lock</strong>: Install <code class="language-plaintext highlighter-rouge">i3lock-color</code> and use this theme <code class="language-plaintext highlighter-rouge">https://github.com/Raymo111/i3lock-color</code>. There are some dependencies you’ll need to check. Use <code class="language-plaintext highlighter-rouge">xautolock</code> to automatically activate <code class="language-plaintext highlighter-rouge">i3lock</code>.</li> <li><strong>Setup File Synchronization</strong>: Install <code class="language-plaintext highlighter-rouge">rslsync</code> by <code class="language-plaintext highlighter-rouge">yay -S rslsync</code>. Start Resilio Sync <code class="language-plaintext highlighter-rouge">systemctl start rslsync.service</code>. Start at boot <code class="language-plaintext highlighter-rouge">systemctl enable rslsync.service</code>. You can then access the Resilio Sync interface at <code class="language-plaintext highlighter-rouge">localhost:8888</code> in your web browser. You need to add the permission of user’s folder <code class="language-plaintext highlighter-rouge">sudo setfacl -R -m "u:rslsync:rwx" /home/your-username</code> — I removed it as this current PC doesn’t have too much space for download.</li> <li>matlab is at <code class="language-plaintext highlighter-rouge">/usr/local/MATLAB/R2023a</code>.</li> <li><strong>Install MeshLab</strong>: from source code, need vcglib (from source code) to replace the empty folder at <code class="language-plaintext highlighter-rouge">src/</code> Check to see if the <code class="language-plaintext highlighter-rouge">&lt;cstdint&gt;</code> header file is included in the <code class="language-plaintext highlighter-rouge">src/external/downloads/libE57Format-2.3.0/include/E57Format.h</code> and <code class="language-plaintext highlighter-rouge">src/external/downloads/nexus-master/src/corto/src/tunstall.cpp</code> file. If not, you can add the line <code class="language-plaintext highlighter-rouge">#include &lt;cstdint&gt;</code> at the top of the file. <br/> <code class="language-plaintext highlighter-rouge">mv /home/{username}/Apps/anaconda3/lib/libstdc++.so.6 /home/{username}/Apps/anaconda3/lib/libstdc++.so.6.bak</code> <br/> maybe <code class="language-plaintext highlighter-rouge">u3d</code> need to be installed — no errors currently</li> <li><strong>pymol install</strong>: The pymol is installed from its open source version. After the installation, you might have the following error. <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>➜  linux git:(main) ✗ pymol
+libGL error: MESA-LOADER: failed to open iris: /home/jiahuic/Apps/miniconda3/lib/libstdc++.so.6: version `GLIBCXX_3.4.30' not found (required by /usr/lib/dri/iris_dri.so) (search paths /usr/lib/dri, suffix _dri)
+libGL error: failed to load driver: iris
+libGL error: MESA-LOADER: failed to open iris: /home/jiahuic/Apps/miniconda3/lib/libstdc++.so.6: version `GLIBCXX_3.4.30' not found (required by /usr/lib/dri/iris_dri.so) (search paths /usr/lib/dri, suffix _dri)
+libGL error: failed to load driver: iris
+libGL error: MESA-LOADER: failed to open swrast: /home/jiahuic/Apps/miniconda3/lib/libstdc++.so.6: version `GLIBCXX_3.4.30' not found (required by /usr/lib/dri/swrast_dri.so) (search paths /usr/lib/dri, suffix _dri)
+libGL error: failed to load driver: swrast
+</code></pre></div> </div> <p>To solve the error:</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mv /home/{username}/Apps/miniconda3/lib/libstdc++.so.6 /home/{username}/Apps/miniconda3/lib/libstdc++.so.6.bak
+ln -s /lib/libstdc++.so.6 /home/{username}/Apps/miniconda3/lib/libstdc++.so.6
+</code></pre></div> </div> </li> </ol> <h3 id="connect-to-wifi">Connect to WiFi</h3> <p>Enter the <code class="language-plaintext highlighter-rouge">iwd</code> mode:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iwctl <span class="c"># if saying "waiting for iwd to start", do sudo systemctl start iwd</span>
+</code></pre></div></div> <p>In <code class="language-plaintext highlighter-rouge">iwd</code> mode, you can check the WiFi device by <code class="language-plaintext highlighter-rouge">device list</code>. If you see some devices with power off, you can try</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adapter phy0 set-property Powered on <span class="c"># some say: device phy0, try both</span>
+device wlan0 set-property Powered on
+</code></pre></div></div> <p>Once that done, it is ready to scan and see the WiFi signals</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>station wlan0 scan
+station wlan0 get-networks
+station wlan0 connect yourWiFi
+station wlan0 show
+</code></pre></div></div> <h3 id="bluetooth-connect">Bluetooth Connect</h3> <p>Use the <code class="language-plaintext highlighter-rouge">bluetoothctl</code> utility which is part of the <code class="language-plaintext highlighter-rouge">bluez</code> package in Arch Linux to manage your Bluetooth devices. Install <code class="language-plaintext highlighter-rouge">bluez</code> and <code class="language-plaintext highlighter-rouge">bluez-utils</code> by <code class="language-plaintext highlighter-rouge">sudo pacman -S bluez bluez-utils</code>. Then start and enable the Bluetooth service:</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo systemctl start bluetooth
+sudo systemctl enable bluetooth
+</code></pre></div></div> <p>Now, start <code class="language-plaintext highlighter-rouge">bluetoothctl</code> to pair and connect the devices.</p> <ol> <li>Start the <code class="language-plaintext highlighter-rouge">bluetoothctl</code>.</li> <li>Turn the Bluetooth controller power on: <code class="language-plaintext highlighter-rouge">power on</code>.</li> <li>Make the Bluetooth controller discoverable: <code class="language-plaintext highlighter-rouge">discoverable on</code>.</li> <li>Start the agent: <code class="language-plaintext highlighter-rouge">agent on</code>.</li> <li>Start scanning for devices: <code class="language-plaintext highlighter-rouge">scan on</code>. Copy its MAC address, then stop scanning: <code class="language-plaintext highlighter-rouge">scan off</code>.</li> <li>Pair and connect to the device. Replace <code class="language-plaintext highlighter-rouge">[device MAC address]</code> with the device’s MAC address: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pair <span class="o">[</span>device MAC address]
+trust <span class="o">[</span>device MAC address]
+connect <span class="o">[</span>device MAC address]
+</code></pre></div> </div> <p>Type <code class="language-plaintext highlighter-rouge">quit</code> to exit <code class="language-plaintext highlighter-rouge">bluetoothctl</code> when you’re done.</p> </li> </ol> <h3 id="conclusion">Conclusion</h3> <p>And there you have it! You’ve now set up and configured your Arch Linux system, and it’s ready for your research endeavors. Remember, the beauty of Linux lies in its flexibility and the control it offers you as a user. Don’t hesitate to explore, tweak, and personalize it to suit your needs.</p> <p>I hope you found this guide helpful. If you run into any issues or have any questions, don’t hesitate to leave a comment. Your input could also help other readers who may encounter the same problems.</p> <p>Thank you for reading and happy researching on Arch Linux!</p> <h3 id="useful-references">Useful References</h3> <ul> <li><a href="https://wiki.archlinux.org/title/Installation_guide">Arch Linux Installation Guide</a></li> <li><a href="https://wiki.archlinux.org/title/General_recommendations">Arch Linux General Recommendations</a></li> <li><a href="https://wiki.archlinux.org/title/Zsh">Zsh Configuration</a></li> <li><a href="https://wiki.archlinux.org/title/Pacman/Tips_and_tricks">Pacman Tips and Tricks</a></li> <li><a href="https://wiki.archlinux.org/title/Xinit">Xinitrc Configuration</a></li> </ul>]]></content><author><name></name></author><category term="configuration"/><category term="linux"/><category term="install"/><summary type="html"><![CDATA[an easy installation and set up for people who want to use arch linux for research]]></summary></entry></feed>
