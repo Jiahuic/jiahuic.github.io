@@ -29,21 +29,20 @@ Southern Methodist University, Dallas, Texas in 2019,
 advised by <a href="https://www.smu.edu/dedman/academics/departments/math/people/faculty/weihuageng">Prof. Weihua Geng</a>.
 
 <!-- My interests lie in finding the boundary that keeps mathematical beauty while doing machine learning. -->
-My studies consist of deep learning, mathematical studies, biology applications, 
-and numerical algorithm developments. 
-I am interested in developing topological and geometric data analysis methods 
-for biology applications at molecular level, 
-and the integration with deep learning and numerical methods. 
-For biology, I am interested in problems of energy predictions of 
-protein-protein interaction (PPI) and energy change predictions of PPI induced by mutations.
+I develop topological and geometric data analysis methods for
+biological problems at the molecular level, with a focus on
+integrating deep learning for predictive modeling. My current work
+centers on binding affinity prediction for protein–protein
+interactions (PPI) and on mutation‑induced energy changes.
 <!-- One of its key applications is  -->
 <!-- studying the SARS-CoV-2 Spike protein binding against ACE2 and antibodies. -->
 <!-- Therefore,  -->
 <!-- the infectivity of SARS-CoV-2 virus and  -->
 <!-- the efficacy of antibody therapies and vaccine can be analyzed. -->
-In addition, I am also interested in 
-fast computing of fast multipole methods (FMM), Treecode, parallel computing, 
-and GPU accelerated computing. 
+
+On the numerical and computational side (briefly): I use and develop
+fast multipole methods (FMM), treecodes, boundary element methods, and
+GPU‑accelerated parallel computing.
 
 For students, who are interested in my research, please feel free to contact me.
 
@@ -67,10 +66,9 @@ I am currently supported by **[NSF-DMS 2514195](https://www.nsf.gov/awardsearch/
 
 #### My main research interests:
 
-* Topological and geometric Data Analysis
-* Treecode and Fast Multipole Method
-* Machine Learning/Deep Learning
-* Numerical PDB; Boundary Element Method
-* Protein-Protein Interaction and Mutation Impacts
-* SARS-CoV-2 virus, vaccine, and antibodies
+* Topological and Geometric Data Analysis (TDA/GDA)
+* Machine Learning / Deep Learning for molecular biophysics
+* Protein–Protein Interactions and mutation impacts
+* Virology: SARS‑CoV‑2, vaccines, and antibodies
+* Numerical/Computational (condensed): Treecode & FMM; Boundary Element Methods; GPU/parallel computing
 <!-- * Differential Geometry -->
