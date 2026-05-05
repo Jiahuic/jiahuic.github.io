@@ -3,8 +3,8 @@ layout: post
 title: 'Setting up Arch Linux for Research'
 date: 2023-07-11 15:09:00
 description: an easy installation and set up for people who want to use arch linux for research
-tags: linux install
-categories: configuration
+tags: [linux, install]
+categories: [configuration]
 ---
 ### Introduction
 Welcome to this comprehensive guide on setting up Arch Linux for research. This blog post is intended for anyone interested in using Arch Linux for their research activities. We'll walk you through the installation process, highlighting common issues and their solutions. Additionally, we'll guide you through configuring your system for optimal performance. Let's get started!

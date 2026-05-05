@@ -3,8 +3,8 @@ layout: post
 title: 'Change Ubuntu to Arch Linux'
 date: 2023-11-27 15:09:00
 description: I changed my Ubuntu Desktop to Arch Linux
-tags: linux install
-categories: configuration
+tags: [linux, install]
+categories: [configuration]
 ---
 
 I have a personal desktop using Ubuntu 22.04.
@@ -102,4 +102,3 @@ Here is some steps I did before I start to install Arch Linux.
 
 #### Reference
 * This is a very useful blog about how to update the grub [link](https://averagelinuxuser.com/dual-boot-arch-linux-with-linux/)
-

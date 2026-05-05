@@ -1,13 +1,14 @@
 ---
 layout: page
-title: Submenus
+title: More
 nav: true
-nav_order: 7
+nav_order: 5
 dropdown: true
 children: 
     - title: CV
       permalink: /cv/
-    - title: divider
     - title: Talks
       permalink: /talks/
+    - title: Repositories
+      permalink: /repositories/
 ---

@@ -23,6 +23,10 @@
 - title: Experience
   type: time_table
   contents:
+    - title: Assistant Professor
+      institution: Department of Mathematical Sciences, University of Arkansas, Fayetteville, AR
+      year: 2023-Present
+
     - title: Visiting Assistant Professor
       institution: Department of Mathematics, Michigan State University, East Lansing, MI
       year: 2019-2023
@@ -34,14 +38,14 @@
       #      - Sub-description 1.
       #      - Sub-description 2.
 
-    - title: Visitor (host by Dr Chunmei Wang)
-      institution: Department of Mathematics, University of Florida, Gainsville, FL
+    - title: Visitor (hosted by Dr Chunmei Wang)
+      institution: Department of Mathematics, University of Florida, Gainesville, FL
       year: Summer, 2022
       #description:
       #  - Description 1.
       #  - Description 2.
 
-    - title: Visitor (host by Dr Guo-Wei Wei)
+    - title: Visitor (hosted by Dr Guo-Wei Wei)
       institution: Department of Mathematics, Michigan State University, East Lansing, MI
       year: Summer, 2018
       #description:
@@ -63,27 +67,36 @@
 - title: Honors and Awards
   type: time_table
   contents:
+    - year: 2025
+      items:
+        - Connor Faculty Fellowship, University of Arkansas
+        - Outstanding Mentor, University of Arkansas
+    - year: 2024
+      items:
+        - Outstanding Mentor, University of Arkansas
+        - Arkansas Biosciences Institute Grant, University of Arkansas
+    - year: 2023
+      items:
+        - Faculty Equipment and Technology Grant, Honors College, University of Arkansas
     - year: 2019
-      items: 
-        - Graduate Student Travel Grant Award, Dedman College, SMU
-    - year: 2029
-      items: 
+      items:
         - Graduate School Dissertation Completion Fellowship, Dedman College, SMU
         - Teaching Assistant Award, Math Dept. SMU
+        - Graduate Student Travel Grant Award, Dedman College, SMU
 
 - title: Academic Interests
   type: nested_list
   contents:
     - title: Computational and Applied Mathematics
-      items: 
+      items:
         - Topological Data Analysis
-        - Computational Differential Gemoerty
+        - Computational Differential Geometry
         - Boundary Integral Equations, Boundary Element Method
         - Treecode, Fast Multipole Method
     - title: Mathematical Biology and Biophysics
       items:
         - Poisson-Boltzmann Equation, Electrostatics
-        - Protein-Protein Interaction, Mutation, Antibody-Antigen
+        - Protein-Protein Interactions, Mutation, Antibody-Antigen
     - title: Computations
       items:
         - Machine Learning, Deep Learning

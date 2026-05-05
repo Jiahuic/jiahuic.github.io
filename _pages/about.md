@@ -19,14 +19,14 @@ news: true  # includes a list of news items
 social: true  # includes social icons at the bottom of the page
 ---
 
-I am an assistant professor in the
-Department of Mathematical Sciences at the University of Arkansas, Fayetteville, Arkansas.
-Prior to that I was a visiting assistant professor in the 
-Department of Mathematics at Michigan State University, East Lansing, Michigan
-working with <a href="https://users.math.msu.edu/users/weig/">Prof. Guo-Wei Wei</a>. 
-I have my Ph.D. at
-Southern Methodist University, Dallas, Texas in 2019,
-advised by <a href="https://www.smu.edu/dedman/academics/departments/math/people/faculty/weihuageng">Prof. Weihua Geng</a>.
+I am an assistant professor in the Department of Mathematical Sciences at the
+University of Arkansas, Fayetteville. Before joining Arkansas, I was a visiting
+assistant professor in the Department of Mathematics at Michigan State
+University, where I worked with
+<a href="https://users.math.msu.edu/users/weig/">Prof. Guo-Wei Wei</a>. I
+received my Ph.D. in mathematics from Southern Methodist University in 2019,
+advised by
+<a href="https://www.smu.edu/dedman/academics/departments/math/people/faculty/weihuageng">Prof. Weihua Geng</a>.
 
 <!-- My interests lie in finding the boundary that keeps mathematical beauty while doing machine learning. -->
 I develop topological and geometric data analysis methods for
@@ -44,9 +44,9 @@ On the numerical and computational side (briefly): I use and develop
 fast multipole methods (FMM), treecodes, boundary element methods, and
 GPU‑accelerated parallel computing.
 
-For students, who are interested in my research, please feel free to contact me.
+Students interested in my research are welcome to get in touch.
 
-#### Current Funding Support:
+#### Current Funding
 
 I am currently supported by **[NSF-DMS 2514195](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2514195&HistoricalAwards=false)** and **NIH-R01 AI164266**.
 

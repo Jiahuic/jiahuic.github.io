@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /teaching/math-499v599v/lec1/
+permalink: /teaching/math-499v599v/lec3/
 title: Introduction to Topological Data Analysis
 ---
 
@@ -27,4 +27,3 @@ The chain complex is constructed by assigning a vector space to each simplex, an
 
 ## Persistent Homology of a Point Cloud
 The persistent homology of a point cloud is a method for computing the homology groups of a simplicial complex. The simplicial complex is constructed from the point cloud by constructing a simplex for each point in the point cloud, and then constructing a simplex for each pair of points in the point cloud. The simplicial complex is constructed by constructing a simplex for each point in the point cloud, and then constructing a simplex for each pair of points in the point cloud. The simplicial complex is constructed by constructing a simplex for each point in the point cloud, and then constructing a simplex for each pair of points in the point cloud. The simplicial complex is constructed by constructing a simplex for each point in the point cloud, and then constructing a simplex for each pair of points in the point cloud. The simplicial complex is constructed by constructing a simplex for each point in the point cloud, and then constructing a simplex for each pair of points in the point cloud. The simplicial complex is constructed by constructing a simplex for each point in the point cloud, and then constructing a simplex for each pair of points in the point cloud.
-
