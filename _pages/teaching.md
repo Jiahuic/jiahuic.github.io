@@ -8,6 +8,7 @@ nav_order: 4
 ---
 
 ### Teaching Courses at UArk
+* [Summer Group Research, Summer 2026]({{ '/teaching/summer-research-symposium-2026/' | relative_url }})
 * [MATH 4990V/5990V Mathematical Foundations of Machine Learning, Fall 2026]({{ '/teaching/math-4990v5990v/' | relative_url }})
 * MATH 43403 Introduction to Scientific Computing, Spring 2026; Spring 2025
 * MATH 25804 Elementary Differential Equations, Spring 2026; Fall 2024
