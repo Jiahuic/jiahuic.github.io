@@ -54,7 +54,7 @@ generative models through presentation, discussion, and critical analysis.
 
 - **Bashar Zaqebeh (Graduate)** — Main Presentation (20 + 10 Q&A)
 - **Anjuman Ara Rashid (Graduate)** — Paper Review (20 min): *Variational Diffusion Models (VDM)* (2022), Kingma, Salimans, Jozefowicz, Chen, Sutskever, and Ho
-- **Innocent Obed Awidi (Graduate)** — Paper Review (20 min): *Diffusion Models on Graphs* (2023), Vignac, Bresson, and Bronstein
+- **Innocent Obed Awidi (Graduate)** — Paper Review (20 min): *Score-based Generative Modeling of Graphs via the System of Stochastic Differential Equations* (2023), Jo, Lee, and Hwang
 
 ### Notes
 
