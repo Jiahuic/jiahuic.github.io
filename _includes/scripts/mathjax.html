@@ -3,7 +3,17 @@
   <script type="text/javascript">
     window.MathJax = {
       tex: {
-        tags: 'ams'
+        tags: 'ams',
+        // MathJax 3 does not treat single $ as an inline delimiter by default.
+        // Course notes and project pages use $...$ for inline math, so enable it.
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        // Never typeset inside code — several posts use $ in shell snippets.
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code',
+                       'annotation', 'annotation-xml']
       }
     };
   </script>
